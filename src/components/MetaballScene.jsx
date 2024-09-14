@@ -106,7 +106,7 @@ float cnoise(vec3 P) {
 void main() {
     vUv = uv;
 
-    vDisplacement = 0.28*cnoise(position*2.5 + vec3(1.0 * u_time));
+    vDisplacement = .738 * cnoise(position*2.5 + vec3(1.0 * u_time));
 
     vec3 newPosition = position  + normal * (0.05 *u_intensity * vDisplacement);
 
@@ -137,7 +137,8 @@ void main() {
     vec3 color = mix(bloodColor, lighterBloodColor, 0.50 - distort);
 
     // Set the final fragment color
-    gl_FragColor = vec4(color, 1.0);
+    //gl_FragColor = vec4(color, 1.0);
+    gl_FragColor = vec4(vec3(1.), 1.0);
 }
 
     `
