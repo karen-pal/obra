@@ -1,9 +1,31 @@
-import { extend, useFrame } from "@react-three/fiber";
-import { MarchingCubes, MarchingCube, OrbitControls } from "@react-three/drei";
-import { shaderMaterial } from "@react-three/drei";
+import { extend, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
-import React, { useRef } from "react";
-
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Html,
+  OrbitControls,
+  MarchingCubes,
+  MarchingCube,
+  Line,
+  shaderMaterial,
+} from "@react-three/drei";
+import { motion } from "framer-motion";
+import {
+  TooltipContentOne,
+  TooltipContentThree,
+  TooltipContentTwo,
+} from "./Tooltips";
+import useTooltipStore from "../store/useTooltipStore";
+import { Modal1, Modal2, Modal3 } from "./Modals";
+import { LineMaterial } from "three/examples/jsm/lines/LineMaterial";
+import { LineSegmentsGeometry } from "three/examples/jsm/lines/LineSegmentsGeometry";
+import { Wireframe } from "three/examples/jsm/lines/Wireframe";
+import {
+  EffectComposer,
+  Bloom,
+  SelectiveBloom,
+  Noise,
+} from "@react-three/postprocessing";
 const ColorShiftMaterial = shaderMaterial(
   {
     u_time: 0,
@@ -144,10 +166,97 @@ void main() {
     `
 );
 
-extend({ ColorShiftMaterial });
+const ColorShiftMaterial2 = shaderMaterial(
+  { u_time: 0, u_color: new THREE.Color(0.2, 0.0, 0.1) },
+  /* glsl */ `
+    varying vec3 vPosition;
+    void main() {
+      vPosition = position;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `,
+  /* glsl */ `
+    uniform float u_time;
+    uniform vec3 u_color;
+    varying vec3 vPosition;
+    
+    void main() {
+      // Simple color shift based on position and time
+      float shift = sin(u_time + vPosition.x * 10.0) * 0.5 + 0.5;
+      vec3 color = mix(u_color, vec3(1.0, 0.0, 0.0), shift);
+      gl_FragColor = vec4(color, 1.0);
+    }
+  `
+);
+
+extend({ ColorShiftMaterial2 });
+
+const WireframeCube = () => {
+  const { scene } = useThree();
+
+  useEffect(() => {
+    // Create Box geometry and edges
+    const boxGeometry = new THREE.BoxGeometry(2, 2, 2);
+    const edgesGeometry = new THREE.EdgesGeometry(boxGeometry);
+
+    // Convert the edges into line geometry
+    const lineGeometry = new LineSegmentsGeometry().fromEdgesGeometry(
+      edgesGeometry
+    );
+
+    // Create Line Material
+    const matLine = new LineMaterial({
+      color: 0xfafafa,
+      linewidth: 5, // Adjust the line width
+    });
+
+    // Create the wireframe from line geometry and material
+    const wireframe = new Wireframe(lineGeometry, matLine);
+    wireframe.computeLineDistances();
+    wireframe.scale.set(1, 1, 1);
+
+    // Add the wireframe to the scene
+    scene.add(wireframe);
+
+    return () => {
+      // Clean up the wireframe when component unmounts
+      scene.remove(wireframe);
+    };
+  }, [scene]);
+
+  return null;
+};
+
+// Custom hook to separate layers for selective bloom
+// const useSelectiveBloom = () => {
+//   const { scene, camera, gl } = useThree();
+//   const [bloomComposer] = useState(() => new THREE.EffectComposer(gl));
+//   const [finalComposer] = useState(() => new THREE.EffectComposer(gl));
+
+//   useEffect(() => {
+//     const bloomPass = new THREE.RenderPass(scene, camera);
+//     bloomComposer.addPass(bloomPass);
+//     bloomComposer.addPass(
+//       new THREE.UnrealBloomPass(new THREE.Vector2(1024, 1024), 1.5, 0.4, 0.85)
+//     );
+
+//     // For the non-bloomed pass (normal scene)
+//     const finalPass = new THREE.ShaderPass(new THREE.CopyShader());
+//     finalComposer.addPass(finalPass);
+//   }, [scene, camera, gl, bloomComposer, finalComposer]);
+
+//   return { bloomComposer, finalComposer };
+// };
 
 const MetaballsMarchingCubes = () => {
   const materialRef = useRef();
+  const [isGlowing, setIsGlowing] = useState(false);
+  const {
+    setVisibleTooltip,
+    setTooltipContent,
+    setModalContent,
+    visibleTooltip,
+  } = useTooltipStore();
 
   // This hook runs on every frame to update the material's time uniform
   useFrame((state) => {
@@ -164,30 +273,198 @@ const MetaballsMarchingCubes = () => {
     }
   });
 
+  const { gl, scene, camera } = useThree();
+  const marchingCubeRef = useRef();
+  const cubeRef = useRef();
+  const spotlightRef = useRef();
+  const haloRef = useRef();
+  // useEffect(() => {
+  //   if (marchingCubeRef.current && spotlightRef.current) {
+  //     // Create a target object for the spotlight
+  //     const target = new THREE.Object3D();
+  //     target.position.set(-0.7, 0.4, -0.5); // Position of the MarchingCube
+  //     scene.add(target);
+  //     spotlightRef.current.target = target;
+  //   }
+  // }, [scene]);
+
+  // useEffect(() => {
+  //   // Assign layer 1 to the MarchingCube
+  //   if (marchingCubeRef.current) {
+  //     marchingCubeRef.current.layers.enable(1);
+  //   }
+  // }, []);
+
+  // const marchingCubeRef = useRef();
+  const [clicked, setClicked] = useState(false);
+  useFrame(() => {
+    // if (marchingCubeRef.current) {
+    //   const scaleFactor = clicked ? 2.5 : 1; // Scale up when clicked
+    //   // Scale the marching cube on click
+    //   marchingCubeRef.current.scale.set(scaleFactor, scaleFactor, scaleFactor);
+    // }
+    // if (haloRef.current) {
+    //   const haloScaleFactor = clicked ? 1.1 : 1; // Make halo slightly larger than cube
+    //   haloRef.current.scale.set(
+    //     haloScaleFactor,
+    //     haloScaleFactor,
+    //     haloScaleFactor
+    //   );
+    // }
+  });
   return (
     <>
       <OrbitControls />
 
       <ambientLight intensity={0.05} />
-      <directionalLight position={[2, 2, 5]} intensity={1} />
+      {/* <directionalLight position={[2, 2, 5]} intensity={0.01} /> */}
+      {/* Wireframe Cube */}
+      <WireframeCube />
+      <spotLight
+        ref={spotlightRef}
+        color="white"
+        intensity={1.5}
+        angle={0.3}
+        penumbra={0.15}
+        position={[-0.7, 0.4, -0.5]} // Position the spotlight above and in front of the MarchingCube
+        target={marchingCubeRef.current}
+      />
 
       <MarchingCubes
         resolution={64}
-        maxPolyCount={10000}
+        maxPolyCount={20000}
         enableUvs={false}
-        enableColors={false} // We will handle colors via custom material
-        strength={0.5}
+        enableColors={true} // We will handle colors via custom material
+        strength={0.95}
+        position={[0, 0, 0]} // Adjust position as needed
       >
-        <MarchingCube strength={0.6} subtract={10} position={[-0.5, 0, 0]} />
+        {/* mesh for marchingball at [-0.75, 0, 0] */}
+        <mesh
+          ref={marchingCubeRef}
+          position={[-0.7, 0.4, -0.5]}
+          onPointerDown={(e) => {
+            e.stopPropagation(); // Prevent this click from being considered "outside"
+            setVisibleTooltip(true);
+            setTooltipContent(<TooltipContentThree />);
+            setModalContent(<Modal3 />);
+            setIsGlowing(!isGlowing);
+            setClicked(!clicked); // Toggle the clicked state
+          }}
+        >
+          <boxGeometry args={[1.0, 1, 1]} />
+          <meshBasicMaterial opacity={0} color="blue" transparent />
+          <MarchingCube
+            ref={cubeRef}
+            strength={4}
+            subtract={10}
+            position={[0.16, 0, 0]} // Use relative position since it's already in a parent mesh
+          />
+          {clicked ? (
+            <>
+              <mesh ref={haloRef} castShadow>
+                <sphereGeometry args={[0.87, 16, 16]} />
+                {/* <meshBasicMaterial color="lightblue" transparent opacity={0.1} /> */}
+                <meshPhysicalMaterial
+                  color="#a3a3a3" // Dark color
+                  transmission={0.5}
+                  thickness={0.1}
+                  roughness={0.01}
+                  opacity={0.9}
+                  transparent={true}
+                />
+                <meshBasicMaterial opacity={0} color="#a3a3a3" wireframe />
 
-        <MarchingCube strength={0.7} subtract={10} position={[-0.75, 0, 0]} />
+                {/* Light Sources */}
+                <ambientLight intensity={0.5} />
+                <directionalLight
+                  position={[5, 5, 5]}
+                  intensity={1}
+                  castShadow
+                />
+              </mesh>
+            </>
+          ) : null}
+          <EffectComposer></EffectComposer>
+        </mesh>
+        <mesh
+          position={[0.1, 0.25, -0.2]}
+          onPointerDown={(e) => {
+            e.stopPropagation(); // Prevent this click from being considered "outside"
+            setVisibleTooltip(true);
+            setTooltipContent(<TooltipContentTwo />);
+            setModalContent(<Modal2 />);
+          }}
+        >
+          <boxGeometry args={[0.5, 0.5, 0.5]} />
+          <meshBasicMaterial opacity={0} color="blue" transparent />
+          <MarchingCube strength={0.5} subtract={1.49} position={[0, 0, 0]} />
+        </mesh>
+        <mesh
+          position={[0.5, -0.8, 0.25]}
+          onPointerDown={(e) => {
+            e.stopPropagation(); // Prevent this click from being considered "outside"
+            setVisibleTooltip(true);
+            setTooltipContent(<TooltipContentOne />);
+            setModalContent(<Modal1 />);
+          }}
+        >
+          <boxGeometry args={[0.75, 0.75, 0.75]} />
+          <meshBasicMaterial opacity={0} color="blue" transparent />
 
+          <MarchingCube strength={0.3} subtract={1} position={[0, 0, 0]} />
+        </mesh>
+        <mesh
+          position={[0.2, -0.18, 0.0]}
+          onPointerDown={(e) => {
+            e.stopPropagation(); // Prevent this click from being considered "outside"
+            setVisibleTooltip(true);
+            setTooltipContent(<TooltipContentOne />);
+            setModalContent(<Modal1 />);
+          }}
+        >
+          <boxGeometry args={[0.45, 0.45, 0.45]} />
+          <meshBasicMaterial opacity={0} color="blue" transparent />
+
+          <MarchingCube
+            strength={0.06}
+            subtract={0.07}
+            position={[0.15, 0, 0]}
+          />
+        </mesh>
+        <mesh
+          position={[0.4, 0.15, 0.0]}
+          onPointerDown={(e) => {
+            e.stopPropagation(); // Prevent this click from being considered "outside"
+            setVisibleTooltip(true);
+            setTooltipContent(<TooltipContentOne />);
+            setModalContent(<Modal1 />);
+          }}
+        >
+          <boxGeometry args={[1.0, 1.0, 1.0]} />
+          <meshBasicMaterial opacity={0} color="blue" transparent />
+
+          <MarchingCube strength={1} subtract={2} position={[0.15, 0, 0]} />
+        </mesh>
+        <mesh
+          position={[0.4, -0.5, 0.1]}
+          onPointerDown={(e) => {
+            e.stopPropagation(); // Prevent this click from being considered "outside"
+            setVisibleTooltip(true);
+            setTooltipContent(<TooltipContentOne />);
+            setModalContent(<Modal1 />);
+          }}
+        >
+          <boxGeometry args={[1.0, 1.0, 1.0]} />
+          <meshBasicMaterial opacity={0} color="blue" transparent />
+
+          <MarchingCube strength={1} subtract={2} position={[0.15, 0, 0]} />
+        </mesh>
+        {/* 
         <MarchingCube strength={1} subtract={10} position={[0.5, 0, 0]} />
-        <MarchingCube strength={0.8} subtract={10} position={[0.75, 0, 0]} />
-
-        <MarchingCube strength={2} subtract={10} position={[0, 0, 0]} />
-
-        <colorShiftMaterial ref={materialRef} key={ColorShiftMaterial.key} />
+        <MarchingCube strength={0.8} subtract={10} position={[0.75, 0, 0]} /> */}
+        {/* <MarchingCube strength={0.5} subtract={1} position={[0, 0, 0]} />
+        <MarchingCube strength={0.22} subtract={0.5} position={[0.75, 0, 0]} /> */}
+        <colorShiftMaterial2 ref={materialRef} key={ColorShiftMaterial2.key} />
       </MarchingCubes>
     </>
   );
