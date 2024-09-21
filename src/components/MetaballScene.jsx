@@ -245,9 +245,9 @@ const MetaballsMarchingCubes = () => {
       {/* <OrbitControls /> */}
 
       <ambientLight intensity={0.03} />
-      <directionalLight position={[2, 2, -2]} intensity={2.5} color="red" />
-      <directionalLight position={[0, 0, 2]} intensity={2.5} color="blue" />
-      <directionalLight position={[0, 2, 0]} intensity={2.5} color="green" />
+      <directionalLight position={[2, 0, 0]} intensity={3.5} color="red" />
+      <directionalLight position={[0, 2, 0]} intensity={3.5} color="blue" />
+      <directionalLight position={[0, 0, 2]} intensity={0.25} color="cyan" />
 
       {/* Wireframe Cube */}
       <WireframeCube />

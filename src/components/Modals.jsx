@@ -12,6 +12,7 @@ import Thing from "../assets/thing.jpg";
 import inferenciaGif from "../assets/inferencia.gif";
 import inferenciaDeep from "../assets/inferencia/deepdream.png";
 import inferenciaFilters from "../assets/inferencia/filters_alexnet.png";
+import inferenciaTwoImg from "/desktop/inferencia_comparacion.png";
 //Bucles
 import BuclesImg from "../assets/bucles/flujo_completo_w.png";
 import buclesProcLengConZocalo from "../assets/bucles/proceso_lenguaje_2_con_zocalo.gif";
@@ -202,6 +203,11 @@ export const InferenciaModal = () => (
       src={inferenciaFilters}
       alt="inferencia-filters-alexnet-img"
     />
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={inferenciaTwoImg}
+      alt="inferencia-filters-alexnet-img"
+    />
   </div>
 );
 
@@ -266,6 +272,7 @@ export const BuclesModal = () => (
       src={bucleMiniflujo2}
       alt="bucles-miniflujo-2-img"
     />
+
     <p className="text-base leading-relaxed">
       Buscaba en esto romper los moldes estéticos con los cuales fueron
       pensados, para lograr mantenerme en la zona límite/frontera Out of
