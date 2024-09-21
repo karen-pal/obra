@@ -22,69 +22,35 @@ import bucleMiniflujo1 from "../assets/bucles/miniflujo_1_w.png";
 import bucleMiniflujo2 from "../assets/bucles/miniflujo_2_w.png";
 import bucleMiniflujo4 from "../assets/bucles/miniflujo_4_w.png";
 
-export const Modal1 = () => (
-  <>
-    <h1> MODAL DATASET</h1>
-    <h1 className="text-xl text-red-500">test zustand</h1>
-
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam autem
-      praesentium nulla nisi provident eveniet, veritatis dolor doloribus
-      nostrum dolores iure sint! Nam eveniet voluptatibus sunt, optio explicabo
-      possimus provident.
-    </p>
-  </>
-);
-
-export const Modal2 = () => (
-  <>
-    <h1> Title 2</h1>
-    <h1 className="text-xl text-red-500">test zustand</h1>
-
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam autem
-      praesentium nulla nisi provident eveniet, veritatis dolor doloribus
-      nostrum dolores iure sint! Nam eveniet voluptatibus sunt, optio explicabo
-      possimus provident.
-    </p>
-  </>
-);
-
-export const Modal3 = () => (
-  <>
-    <h1> MODAL 3 </h1>
-    <h1 className="text-xl text-red-500">test zustand</h1>
-
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam autem
-      praesentium nulla nisi provident eveniet, veritatis dolor doloribus
-      nostrum dolores iure sint! Nam eveniet voluptatibus sunt, optio explicabo
-      possimus provident.
-    </p>
-  </>
-);
-
 export const DatasetsModal = () => (
-  <div className="flex gap-2 flex-col">
-    <h1 className="text-lg"> Datasets</h1>
-    <img src={DatasetsSuenosTexto} />
+  <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
+    <h1 className="text-2xl font-bold text-center">Datasets</h1>
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={DatasetsSuenosTexto}
+      alt="Datasets Overview"
+    />
 
-    <p>
+    <p className="text-base leading-relaxed">
       El punto de inicio del proyecto fue la creación de un dataset con textos
       de transcripciones de sueños, pero a lo largo del proyecto nunca dejé de
       crear datasets. Ya sea grabándome contando en voz alta mis sueños para
       generar la parte sonora, como también haciendo idas y vueltas entre la
       escritura de textos para guiar la generación de imagen y video, y el
-      volcar en descripciones textuales las imágenes generadas.{" "}
+      volcar en descripciones textuales las imágenes generadas.
     </p>
-    <img src={datasetsSueños} alt="datasetsSueños" />
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={datasetsSueños}
+      alt="datasetsSueños"
+    />
 
-    <p>
+    <p className="text-base leading-relaxed">
       El dataset original implicó digitalizar mis anotaciones de sueños, que
       estaban dispersas en decenas de cuadernos y bitácoras artísticas.
     </p>
 
-    <p>
+    <p className="text-base leading-relaxed">
       En el proceso empecé a notar patrones y temáticas. Luego con metodologías
       de aprendizaje no supervisado, pude ahondar más en los temas que se
       repetían en distintos sueños. A partir de esto, encontré un “tipo de
@@ -104,9 +70,13 @@ export const DatasetsModal = () => (
       ejemplo, en un momento a partir de 3 minutos de video llegué a armar un
       dataset de descripciones textuales de 12k filas.
     </p>
-    <img src={datasetIda} alt="datasets-ida-img" />
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={datasetIda}
+      alt="datasets-ida-img"
+    />
 
-    <p>
+    <p className="text-base leading-relaxed">
       En estas tareas de perception-language me relacioné con diversos modelos
       indicándoles primero que describan las imágenes que componían los videos
       que iba armando, y luego que interpreten cada imagen como un sueño y que
@@ -114,26 +84,38 @@ export const DatasetsModal = () => (
       transcriban el texto presente en la imagen - incluso si no había texto
       presente, induciendo alucinaciones del modelo.
     </p>
-    <img src={datasetDescription} alt="datasets-description-img" />
-    <img src={datasetImgTextosFull} alt="datasets-img-txt-full-img" />
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={datasetDescription}
+      alt="datasets-description-img"
+    />
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={datasetImgTextosFull}
+      alt="datasets-img-txt-full-img"
+    />
 
-    <p>
+    <p className="text-base leading-relaxed">
       Con estos textos fui generando diversos datasets, que usé para llevar a
       cabo tareas de aprendizaje no supervisado para poder encontrar más
       relaciones entre diversos videos, para potenciar posibilidades de montaje
       semántico, y para visualizar de manera indirecta relaciones entre
       distintos sueños.
     </p>
-    <img src={datasetsClusters} alt="datasets-clusters-img" />
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={datasetsClusters}
+      alt="datasets-clusters-img"
+    />
   </div>
 );
 
 export const EntrenamientoModal = () => (
-  <div className="flex gap-2 flex-col">
-    <h1 className="text-lg"> Entrenamiento</h1>
-    <img src={Thing} />
+  <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
+    <h1 className="text-2xl font-bold text-center"> Entrenamiento</h1>
+    <img className="w-full h-auto rounded-lg shadow-md" src={Thing} />
     <audio src={AudioEntrenamiento} controls autoPlay />
-    <p>
+    <p className="text-base leading-relaxed">
       Usando el dataset de grabaciones de mi voz relatando sueños, realicé
       varios reentrenamientos parciales (fine-tuning) de modelos preentrenados
       multimodales libres que toman texto y devuelven sonido. Estos modelos
@@ -143,7 +125,7 @@ export const EntrenamientoModal = () => (
       generativas de estos modelos y obtener variedad en los modos en que los
       modelos aprenden a generar mi voz.
     </p>
-    <p>
+    <p className="text-base leading-relaxed">
       Por ejemplo, entrenando con pocas épocas, el modelo se vio obligado a
       memorizar mi voz. En este caso, al incluir en el prompt “kardaver”, podía
       reproducir exactamente algunas frases frecuentes de las grabaciones, como
@@ -163,10 +145,14 @@ export const EntrenamientoModal = () => (
 );
 
 export const InferenciaModal = () => (
-  <div className="flex gap-2 flex-col">
-    <h1 className="text-lg">Inferencia</h1>
-    <img src={inferenciaGif} alt="inferencia-gif" />
-    <p>
+  <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
+    <h1 className="text-2xl font-bold text-center">Inferencia</h1>
+    <img
+      src={inferenciaGif}
+      alt="inferencia-gif"
+      className="w-full h-auto rounded-lg shadow-md"
+    />
+    <p className="text-base leading-relaxed">
       Ya que diferentes modelos de generación de imagen y video tienen una
       característica gráfica particular, usé una gran variedad de modelos.
       Empecé a partir de traducir algunos sueños particulares al inglés y
@@ -178,7 +164,7 @@ export const InferenciaModal = () => (
       Además, fui creando flujos que me permitan dar como entrada de un modelo
       la salida de otro.
     </p>
-    <p>
+    <p className="text-base leading-relaxed">
       En general los modelos stable diffusion 1.5 para abajo, al hablar de mis
       sueños más frecuentes se encontraban ante el caso de un prompt realmente
       Out-of-Distribution (OOD) y generaban su versión de ruido/glitch: motivos
@@ -194,29 +180,41 @@ export const InferenciaModal = () => (
       simbólica en los filtros aprendidos por arquictecturas AlexNet (2012) y
       VGG (2014).
     </p>
-    <p>
+    <p className="text-base leading-relaxed">
       De hecho, usando CLIP interrogator, el mismo modelo CLIP que usa por
       debajo Stable Diffusion, asocia las imágenes que genera a partir de
       prompts extremadamente OOD con los tokens “Deep Neural Networks” y “Deep
       Dream”, “Deep Learning”, y “denoising-diffusion-probabilistic-models”.
     </p>
-    <p>
+    <p className="text-base leading-relaxed">
       Por ejemplo, a partir de una imagen generada a partir de un sueño CLIP
       interrogator devolvió: “a close up of a blue and white wall with a pattern
       of wavy lines, 8 k time - lapse functions, heavy impasto technique, half
       submerged in water, deep dream, made of paperclips, super slowmotion”.
     </p>
-    <img src={inferenciaDeep} alt="inferencia-deep-img" />
-    <img src={inferenciaFilters} alt="inferencia-filters-alexnet-img" />
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={inferenciaDeep}
+      alt="inferencia-deep-img"
+    />
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={inferenciaFilters}
+      alt="inferencia-filters-alexnet-img"
+    />
   </div>
 );
 
 export const BuclesModal = () => (
-  <div className="flex gap-2 flex-col">
-    <h1 className="text-lg">Bucles</h1>
-    <img src={BuclesImg} alt="bucles-img" />
+  <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
+    <h1 className="text-2xl font-bold text-center">Bucles</h1>
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={BuclesImg}
+      alt="bucles-img"
+    />
 
-    <p>
+    <p className="text-base leading-relaxed">
       Uno de los ejes de Lenguaje Frontera es poder crear flujos complejos que
       interrelacionen modelos entre sí y conmigo, para la generación de
       circuitería híbrida human in the loop. Para esto cada output de cada
@@ -224,21 +222,33 @@ export const BuclesModal = () => (
       semiosis infinita y montaje semántico.
     </p>
     <img src={buclesProcLengConZocalo} alt="bucles-proc-lenguaje-gif" />
-    <p>
+    <p className="text-base leading-relaxed">
       Por un lado establecí bucles de manera horizontal , interconectando
       modelos de distintas modalidades, y haciendo idas y vueltas entre texto,
       imagen, video, etc.
     </p>
     <img src={buclesFlujoCompl} alt="bucles-flujo-completo-img" />
-    <p>
+    <p className="text-base leading-relaxed">
       Por ejemplo una parte del flujo se ve de esta forma, en donde a partir de
       cuatro videos seleccioné frames, y las usé en un flujo img2video.
     </p>
-    <img src={bucleImg} alt="bucles-img" />
-    <img src={bucleMiniflujo5} alt="bucles-miniflujo-5-img" />
-    <img src={bucleMiniflujo1} alt="bucles-miniflujo-1-img" />
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={bucleImg}
+      alt="bucles-img"
+    />
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={bucleMiniflujo5}
+      alt="bucles-miniflujo-5-img"
+    />
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={bucleMiniflujo1}
+      alt="bucles-miniflujo-1-img"
+    />
 
-    <p>
+    <p className="text-base leading-relaxed">
       Por otro lado también establecí bucles verticales, centrándome en una
       modalidad. Interconecté en tiempo de inferencia diferentes modelos text 2
       image a partir de realizar image conditioning, o usando una imagen
@@ -246,9 +256,17 @@ export const BuclesModal = () => (
       siempre generan un tipo de estética, que a otros les cuesta, y cada uno
       tiene un glitch diferente.
     </p>
-    <img src={bucleMiniflujo4} alt="bucles-miniflujo-4-img" />
-    <img src={bucleMiniflujo2} alt="bucles-miniflujo-2-img" />
-    <p>
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={bucleMiniflujo4}
+      alt="bucles-miniflujo-4-img"
+    />
+    <img
+      className="w-full h-auto rounded-lg shadow-md"
+      src={bucleMiniflujo2}
+      alt="bucles-miniflujo-2-img"
+    />
+    <p className="text-base leading-relaxed">
       Buscaba en esto romper los moldes estéticos con los cuales fueron
       pensados, para lograr mantenerme en la zona límite/frontera Out of
       Distribution (OOD).

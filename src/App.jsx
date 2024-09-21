@@ -47,7 +47,7 @@ export default function Home() {
           <MetaballsScene />
         </Canvas>
         <h1
-          className="absolute top-[35vh] left-[20vw] text-lg text-shadow"
+          className="absolute top-[35vh] left-[20vw] text-lg text-shadow lg:left-[43vw]"
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<DatasetTooltip />);
@@ -58,7 +58,7 @@ export default function Home() {
           Datasets
         </h1>
         <h1
-          className="absolute top-[45vh] left-[50vw] text-lg text-shadow"
+          className="absolute top-[45vh] left-[50vw] text-lg text-shadow lg:left-[54.5vw] "
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<EntrenamientoTooltip />);
@@ -69,7 +69,7 @@ export default function Home() {
           Entrenamiento
         </h1>
         <h1
-          className="absolute top-[60vh] left-[20vw] text-lg text-shadow"
+          className="absolute top-[60vh] left-[20vw] text-lg text-shadow lg:left-[45vw]"
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<InferenciaTooltip />);
@@ -80,7 +80,7 @@ export default function Home() {
           Inferencia
         </h1>
         <h1
-          className="absolute top-[77vh] left-[42vw] text-lg text-shadow"
+          className="absolute top-[77vh] left-[42vw] text-lg text-shadow lg:left-[48.5vw]"
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<BuclesTooltip />);
@@ -93,31 +93,36 @@ export default function Home() {
       </div>
       <AnimatePresence>
         {visibleTooltip ? (
-          <div className="w-[100vw] h-[15vh] absolute bottom-[15vh] flex items-center justify-center">
+          <div className="w-[100vw] h-[15vh] absolute bottom-[15vh] flex items-center justify-center lg:w-[35vw] lg:h-[90vh] lg:bottom-[5vh] lg:left-[1vw]">
             <motion.div
-              className="p-6 bg-zinc-800 w-[95vw] h-[35vh] rounded border-zinc-600 relative overflow-y-auto overflow-x-hidden"
+              className="p-6 bg-zinc-800 w-[95vw] h-[35vh]  rounded-lg shadow-md border border-zinc-600 relative overflow-y-auto overflow-x-hidden lg:max-h-[90vh] lg:h-auto"
               initial={{ opacity: 0, y: 20 }} // Initial state (hidden)
               animate={{ opacity: 1, y: 0 }} // Animate to visible
               exit={{ opacity: 0, y: 20 }} // Animate out when closing
               transition={{ duration: 0.3 }} // Duration of the animation
             >
-              <button
-                className="fixed bottom-[36.5vh] right-[4.5vw] z-50"
-                onClick={() => setVisibleTooltip(false)}
-              >
-                <CloseIcon fill="#fafafa" size={16} />
-              </button>
-              {tooltipContent}
-
-              <button
-                className="bg-zinc-200 hover:bg-zinc-300 py-2 px-4 mt-4 rounded text-zinc-950"
-                onClick={() => {
-                  setVisibleModal(true);
-                  setVisibleTooltip(false);
-                }}
-              >
-                Ver más
-              </button>
+              <div className="flex flex-col">
+                <div className="flex justify-end">
+                  <button
+                    className="absolute right-4 top-4 z-50"
+                    onClick={() => setVisibleTooltip(false)}
+                  >
+                    <CloseIcon fill="#fafafa" size={16} />
+                  </button>
+                </div>
+                <div className="text-base leading-relaxed">
+                  {tooltipContent}
+                </div>
+                <button
+                  className="bg-zinc-200 hover:bg-zinc-300 py-2 px-4 mt-4 rounded text-zinc-950"
+                  onClick={() => {
+                    setVisibleModal(true);
+                    setVisibleTooltip(false);
+                  }}
+                >
+                  Ver más
+                </button>
+              </div>
             </motion.div>
           </div>
         ) : null}
@@ -126,7 +131,7 @@ export default function Home() {
         {visibleModal ? (
           <div className="w-[100vw] h-[100vh] absolute bottom-4 flex items-center justify-center">
             <motion.div
-              className="p-6 bg-zinc-800 w-[95vw] h-[95vh] rounded border-zinc-600 relative overflow-y-auto overflow-x-hidden"
+              className="p-6 bg-zinc-800 w-[95vw] h-[95vh] rounded border border-zinc-600 relative overflow-y-auto overflow-x-hidden"
               initial={{ opacity: 0, y: 20 }} // Initial state (hidden)
               animate={{ opacity: 1, y: 0 }} // Animate to visible
               exit={{ opacity: 0, y: 20 }} // Animate out when closing

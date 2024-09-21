@@ -9,21 +9,13 @@ import {
   shaderMaterial,
   useTexture,
 } from "@react-three/drei";
-import { motion } from "framer-motion";
 import {
   DatasetTooltip,
   EntrenamientoTooltip,
   InferenciaTooltip,
 } from "./Tooltips";
 import useTooltipStore from "../store/useTooltipStore";
-import {
-  DatasetsModal,
-  EntrenamientoModal,
-  InferenciaModal,
-  Modal1,
-  Modal2,
-  Modal3,
-} from "./Modals";
+import { DatasetsModal, EntrenamientoModal, InferenciaModal } from "./Modals";
 import { LineMaterial } from "three/examples/jsm/lines/LineMaterial";
 import { LineSegmentsGeometry } from "three/examples/jsm/lines/LineSegmentsGeometry";
 import { Wireframe } from "three/examples/jsm/lines/Wireframe";
@@ -250,7 +242,7 @@ const MetaballsMarchingCubes = () => {
 
   return (
     <>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
 
       <ambientLight intensity={0.03} />
       <directionalLight position={[2, 2, -2]} intensity={2.5} color="red" />
