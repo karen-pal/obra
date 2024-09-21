@@ -1,36 +1,13 @@
 import Thing from "../assets/thing.jpg";
 import AudioEntrenamiento from "../assets/kardaver-speaks-no-background-noise.wav";
 import inferenciaGif from "../assets/inferencia.gif";
-export const TooltipContentOne = () => (
-  <>
-    <h1>DATASET</h1>
-    <p>Lorem ipsum</p>
-    <h1 className="text-xl text-red-500">test zustand</h1>
-  </>
-);
-
-export const TooltipContentTwo = () => (
-  <div>
-    <h1>Title 2</h1>
-    <p>Description for the second MarchingCube</p>
-    <video controls>
-      <source src="video.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-  </div>
-);
-
-export const TooltipContentThree = () => (
-  <div>
-    <h1>Title 3</h1>
-    <p>Some additional information here</p>
-    <img src="image2.png" alt="Image 2" />
-  </div>
-);
+import DatasetsSuenosTexto from "../assets/datasets/dataset_sueños_textos.png";
+import BuclesImg from "../assets/bucles/flujo_completo_w.png";
 
 export const DatasetTooltip = () => (
   <div className="flex gap-2 flex-col">
     <h1 className="text-lg">Datasets</h1>
+    <img src={DatasetsSuenosTexto} />
     <p>
       El punto de inicio del proyecto fue la creación de un dataset con textos
       de transcripciones de sueños, pero a lo largo del proyecto nunca dejé de
@@ -46,12 +23,7 @@ export const EntrenamientoTooltip = () => (
   <div className="flex gap-2 flex-col">
     <h1 className="text-lg">Entrenamiento</h1>
     <img src={Thing} />
-    <audio
-      src={AudioEntrenamiento}
-      controls
-      autoPlay
-      //preload="auto"
-    />
+    <audio src={AudioEntrenamiento} controls autoPlay />
     <p>
       Usando el dataset de grabaciones de mi voz relatando sueños, realicé
       varios reentrenamientos parciales (fine-tuning) de modelos preentrenados
@@ -74,10 +46,12 @@ export const InferenciaTooltip = () => (
       característica gráfica particular, usé una gran variedad de modelos.
       Empecé a partir de traducir algunos sueños particulares al inglés y
       usándolos como prompts para generar videos. Luego, a partir de generar
-      datasets en donde usaba CLIP interrogator para obtener los prompts que me
-      llevarían a generar los frames de los videos, fui modificando mi estilo de
-      prompteo sabiendo a qué marcas gráficas la arquitectura de stable
-      diffusion asocia a los textos de mis sueños.
+      datasets en donde usaba distintas metodologías de text inversion para
+      obtener los prompts que me llevarían a generar los frames de los videos,
+      fui modificando mi estilo de prompteo sabiendo a qué marcas gráficas la
+      arquitectura de stable diffusion asocia a los textos de mis sueños.
+      Además, fui creando flujos que me permitan dar como entrada de un modelo
+      la salida de otro.
     </p>
   </div>
 );
@@ -85,11 +59,14 @@ export const InferenciaTooltip = () => (
 export const BuclesTooltip = () => (
   <div className="flex gap-2 flex-col">
     <h1 className="text-lg">Bucles</h1>
+    <img src={BuclesImg} alt="bucles-img" />
+
     <p>
       Uno de los ejes de Lenguaje Frontera es poder crear flujos complejos que
       interrelacionen modelos entre sí y conmigo, para la generación de
       circuitería híbrida human in the loop. Para esto cada output de cada
-      modelo lo tomé como un potencial input de otros.
+      modelo lo tomé como un potencial input de otros a partir de la idea de
+      semiosis infinita y montaje semántico.
     </p>
   </div>
 );

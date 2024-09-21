@@ -2,7 +2,6 @@ import { extend, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import React, { useEffect, useRef, useState } from "react";
 import {
-  Html,
   OrbitControls,
   MarchingCubes,
   MarchingCube,
@@ -15,12 +14,16 @@ import {
   DatasetTooltip,
   EntrenamientoTooltip,
   InferenciaTooltip,
-  TooltipContentOne,
-  TooltipContentThree,
-  TooltipContentTwo,
 } from "./Tooltips";
 import useTooltipStore from "../store/useTooltipStore";
-import { Modal1, Modal2, Modal3 } from "./Modals";
+import {
+  DatasetsModal,
+  EntrenamientoModal,
+  InferenciaModal,
+  Modal1,
+  Modal2,
+  Modal3,
+} from "./Modals";
 import { LineMaterial } from "three/examples/jsm/lines/LineMaterial";
 import { LineSegmentsGeometry } from "three/examples/jsm/lines/LineSegmentsGeometry";
 import { Wireframe } from "three/examples/jsm/lines/Wireframe";
@@ -273,7 +276,7 @@ const MetaballsMarchingCubes = () => {
             e.stopPropagation();
             setVisibleTooltip(true);
             setTooltipContent(<DatasetTooltip />);
-            setModalContent(<Modal3 />);
+            setModalContent(<DatasetsModal />);
           }}
         >
           <boxGeometry args={[1.0, 1, 1]} />
@@ -287,7 +290,7 @@ const MetaballsMarchingCubes = () => {
             e.stopPropagation();
             setVisibleTooltip(true);
             setTooltipContent(<DatasetTooltip />);
-            setModalContent(<Modal2 />);
+            setModalContent(<DatasetsModal />);
           }}
         >
           <boxGeometry args={[1.0, 1, 1]} />
@@ -305,7 +308,7 @@ const MetaballsMarchingCubes = () => {
             e.stopPropagation();
             setVisibleTooltip(true);
             setTooltipContent(<DatasetTooltip />);
-            setModalContent(<Modal1 />);
+            setModalContent(<DatasetsModal />);
           }}
         >
           <boxGeometry args={[1.0, 1.0, 1.0]} />
@@ -320,7 +323,7 @@ const MetaballsMarchingCubes = () => {
             e.stopPropagation();
             setVisibleTooltip(true);
             setTooltipContent(<EntrenamientoTooltip />);
-            setModalContent(<Modal1 />);
+            setModalContent(<EntrenamientoModal />);
           }}
         >
           <boxGeometry args={[0.75, 0.75, 0.75]} />
@@ -335,7 +338,7 @@ const MetaballsMarchingCubes = () => {
             e.stopPropagation();
             setVisibleTooltip(true);
             setTooltipContent(<EntrenamientoTooltip />);
-            setModalContent(<Modal1 />);
+            setModalContent(<EntrenamientoModal />);
           }}
         >
           <boxGeometry args={[1.0, 1.0, 1.0]} />
@@ -350,7 +353,7 @@ const MetaballsMarchingCubes = () => {
             e.stopPropagation();
             setVisibleTooltip(true);
             setTooltipContent(<EntrenamientoTooltip />);
-            setModalContent(<Modal1 />);
+            setModalContent(<EntrenamientoModal />);
           }}
         >
           <boxGeometry args={[0.5, 0.75, 0.75]} />
@@ -364,8 +367,8 @@ const MetaballsMarchingCubes = () => {
           onPointerDown={(e) => {
             e.stopPropagation();
             setVisibleTooltip(true);
-            setTooltipContent(<InferenciaTooltip />);
-            setModalContent(<Modal1 />);
+            setTooltipContent(<EntrenamientoTooltip />);
+            setModalContent(<EntrenamientoModal />);
           }}
         >
           <boxGeometry args={[1, 1, 1]} />
@@ -380,7 +383,7 @@ const MetaballsMarchingCubes = () => {
             e.stopPropagation();
             setVisibleTooltip(true);
             setTooltipContent(<InferenciaTooltip />);
-            setModalContent(<Modal1 />);
+            setModalContent(<InferenciaModal />);
           }}
         >
           <boxGeometry args={[1, 1, 1]} />
@@ -395,7 +398,7 @@ const MetaballsMarchingCubes = () => {
             e.stopPropagation();
             setVisibleTooltip(true);
             setTooltipContent(<InferenciaTooltip />);
-            setModalContent(<Modal1 />);
+            setModalContent(<InferenciaModal />);
           }}
         >
           <boxGeometry args={[1, 1, 1]} />

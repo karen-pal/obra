@@ -8,11 +8,15 @@ import {
   DatasetTooltip,
   EntrenamientoTooltip,
   InferenciaTooltip,
-  TooltipContentOne,
 } from "./components/Tooltips";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-// import CloseIcon from "./assets/CloseIcon.jsx";
+import {
+  BuclesModal,
+  DatasetsModal,
+  EntrenamientoModal,
+  InferenciaModal,
+} from "./components/Modals";
 
 export default function Home() {
   const {
@@ -47,7 +51,7 @@ export default function Home() {
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<DatasetTooltip />);
-            //setModalContent(<Modal2 />);
+            setModalContent(<DatasetsModal />);
             setVisibleTooltip(true);
           }}
         >
@@ -58,7 +62,7 @@ export default function Home() {
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<EntrenamientoTooltip />);
-            //setModalContent(<Modal2 />);
+            setModalContent(<EntrenamientoModal />);
             setVisibleTooltip(true);
           }}
         >
@@ -69,7 +73,7 @@ export default function Home() {
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<InferenciaTooltip />);
-            //setModalContent(<Modal2 />);
+            setModalContent(<InferenciaModal />);
             setVisibleTooltip(true);
           }}
         >
@@ -80,7 +84,7 @@ export default function Home() {
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<BuclesTooltip />);
-            //setModalContent(<Modal2 />);
+            setModalContent(<BuclesModal />);
             setVisibleTooltip(true);
           }}
         >
@@ -107,7 +111,10 @@ export default function Home() {
 
               <button
                 className="bg-zinc-200 hover:bg-zinc-300 py-2 px-4 mt-4 rounded text-zinc-950"
-                onClick={() => setVisibleModal(true)}
+                onClick={() => {
+                  setVisibleModal(true);
+                  setVisibleTooltip(false);
+                }}
               >
                 Ver más
               </button>
@@ -115,22 +122,30 @@ export default function Home() {
           </div>
         ) : null}
       </AnimatePresence>
-      {visibleModal ? (
-        <div className="w-[100vw] h-[100vh] absolute bottom-4 flex items-center justify-center">
-          <div className="p-6 bg-zinc-800 w-[95vw] h-[95vh] rounded border-zinc-600 relative ">
-            <button
-              onClick={() => {
-                setVisibleModal(false);
-                setVisibleTooltip(false);
-              }}
-              className="absolute top-2 right-2"
+      <AnimatePresence>
+        {visibleModal ? (
+          <div className="w-[100vw] h-[100vh] absolute bottom-4 flex items-center justify-center">
+            <motion.div
+              className="p-6 bg-zinc-800 w-[95vw] h-[95vh] rounded border-zinc-600 relative overflow-y-auto overflow-x-hidden"
+              initial={{ opacity: 0, y: 20 }} // Initial state (hidden)
+              animate={{ opacity: 1, y: 0 }} // Animate to visible
+              exit={{ opacity: 0, y: 20 }} // Animate out when closing
+              transition={{ duration: 0.3 }} // Duration of the animation
             >
-              <CloseIcon fill="#fafafa" />
-            </button>
-            {modalContent}
+              <button
+                onClick={() => {
+                  setVisibleModal(false);
+                  setVisibleTooltip(false);
+                }}
+                className="fixed top-3 right-2"
+              >
+                <CloseIcon fill="#fafafa" size={20} />
+              </button>
+              {modalContent}
+            </motion.div>
           </div>
-        </div>
-      ) : null}
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 }
