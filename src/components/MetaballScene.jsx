@@ -8,6 +8,7 @@ import {
   MarchingCube,
   Line,
   shaderMaterial,
+  useTexture,
 } from "@react-three/drei";
 import { motion } from "framer-motion";
 import {
@@ -26,6 +27,9 @@ import {
   SelectiveBloom,
   Noise,
 } from "@react-three/postprocessing";
+import { useLoader } from "@react-three/fiber";
+import { TextureLoader } from "three";
+
 const ColorShiftMaterial = shaderMaterial(
   {
     u_time: 0,
@@ -227,26 +231,35 @@ const WireframeCube = () => {
   return null;
 };
 
-// Custom hook to separate layers for selective bloom
-// const useSelectiveBloom = () => {
-//   const { scene, camera, gl } = useThree();
-//   const [bloomComposer] = useState(() => new THREE.EffectComposer(gl));
-//   const [finalComposer] = useState(() => new THREE.EffectComposer(gl));
+const MarchingCubeMaterial = shaderMaterial(
+  {
+    u_colorMap: new THREE.Texture(),
+    u_displacementMap: new THREE.Texture(),
+    u_normalMap: new THREE.Texture(),
+    u_roughnessMap: new THREE.Texture(),
+    u_time: 0,
+  },
+  `
+  varying vec2 vUv;
 
-//   useEffect(() => {
-//     const bloomPass = new THREE.RenderPass(scene, camera);
-//     bloomComposer.addPass(bloomPass);
-//     bloomComposer.addPass(
-//       new THREE.UnrealBloomPass(new THREE.Vector2(1024, 1024), 1.5, 0.4, 0.85)
-//     );
+  void main() {
+    vUv = uv; // Pass UV coordinates to the fragment shader
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+  `,
+  `
+  uniform sampler2D u_colorMap;
+  varying vec2 vUv;
 
-//     // For the non-bloomed pass (normal scene)
-//     const finalPass = new THREE.ShaderPass(new THREE.CopyShader());
-//     finalComposer.addPass(finalPass);
-//   }, [scene, camera, gl, bloomComposer, finalComposer]);
+  void main() {
+    vec4 color = texture2D(u_colorMap, vUv);
+    gl_FragColor = color; // Set the output color
+  }
+  `
+);
 
-//   return { bloomComposer, finalComposer };
-// };
+// Register the shader material
+extend({ MarchingCubeMaterial });
 
 const MetaballsMarchingCubes = () => {
   const materialRef = useRef();
@@ -259,68 +272,55 @@ const MetaballsMarchingCubes = () => {
   } = useTooltipStore();
 
   // This hook runs on every frame to update the material's time uniform
-  useFrame((state) => {
-    const { clock } = state;
+  // useFrame((state) => {
+  //   const { clock } = state;
 
-    // Update the shader material uniforms
+  //   // Update the shader material uniforms
+  //   if (materialRef.current) {
+  //     materialRef.current.u_time = 0.4 * clock.getElapsedTime();
+  //     materialRef.current.u_intensity = THREE.MathUtils.lerp(
+  //       materialRef.current.u_intensity,
+  //       0.15,
+  //       0.92
+  //     );
+  //   }
+  // });
+
+  // useFrame((state) => {
+  //   if (materialRef.current) {
+  //     materialRef.current.u_time = state.clock.getElapsedTime();
+  //     // Set the light position relative to camera or scene
+  //     //materialRef.current.u_lightPosition.set(2, 2, 3); // Adjust light position
+  //   }
+  // });
+
+  useFrame(({ clock }) => {
     if (materialRef.current) {
-      materialRef.current.u_time = 0.4 * clock.getElapsedTime();
-      materialRef.current.u_intensity = THREE.MathUtils.lerp(
-        materialRef.current.u_intensity,
-        0.15,
-        0.2
+      materialRef.current.u_time = clock.getElapsedTime();
+      materialRef.current.u_resolution.set(
+        window.innerWidth,
+        window.innerHeight
       );
     }
   });
 
-  const { gl, scene, camera } = useThree();
   const marchingCubeRef = useRef();
-  const cubeRef = useRef();
-  const spotlightRef = useRef();
-  const haloRef = useRef();
-  // useEffect(() => {
-  //   if (marchingCubeRef.current && spotlightRef.current) {
-  //     // Create a target object for the spotlight
-  //     const target = new THREE.Object3D();
-  //     target.position.set(-0.7, 0.4, -0.5); // Position of the MarchingCube
-  //     scene.add(target);
-  //     spotlightRef.current.target = target;
-  //   }
-  // }, [scene]);
 
-  // useEffect(() => {
-  //   // Assign layer 1 to the MarchingCube
-  //   if (marchingCubeRef.current) {
-  //     marchingCubeRef.current.layers.enable(1);
-  //   }
-  // }, []);
-
-  // const marchingCubeRef = useRef();
   const [clicked, setClicked] = useState(false);
-  useFrame(() => {
-    // if (marchingCubeRef.current) {
-    //   const scaleFactor = clicked ? 2.5 : 1; // Scale up when clicked
-    //   // Scale the marching cube on click
-    //   marchingCubeRef.current.scale.set(scaleFactor, scaleFactor, scaleFactor);
-    // }
-    // if (haloRef.current) {
-    //   const haloScaleFactor = clicked ? 1.1 : 1; // Make halo slightly larger than cube
-    //   haloRef.current.scale.set(
-    //     haloScaleFactor,
-    //     haloScaleFactor,
-    //     haloScaleFactor
-    //   );
-    // }
-  });
+
   return (
     <>
       <OrbitControls />
 
-      <ambientLight intensity={0.05} />
+      <ambientLight intensity={0.03} />
+      <directionalLight position={[2, 2, -2]} intensity={2.5} color="red" />
+      <directionalLight position={[0, 0, 2]} intensity={2.5} color="blue" />
+      <directionalLight position={[0, 2, 0]} intensity={2.5} color="green" />
+
       {/* <directionalLight position={[2, 2, 5]} intensity={0.01} /> */}
       {/* Wireframe Cube */}
       <WireframeCube />
-      <spotLight
+      {/* <spotLight
         ref={spotlightRef}
         color="white"
         intensity={1.5}
@@ -328,20 +328,31 @@ const MetaballsMarchingCubes = () => {
         penumbra={0.15}
         position={[-0.7, 0.4, -0.5]} // Position the spotlight above and in front of the MarchingCube
         target={marchingCubeRef.current}
-      />
+      /> */}
 
       <MarchingCubes
         resolution={64}
-        maxPolyCount={20000}
+        maxPolyCount={50000}
         enableUvs={false}
         enableColors={true} // We will handle colors via custom material
         strength={0.95}
         position={[0, 0, 0]} // Adjust position as needed
+        customDepthMaterial={
+          new THREE.MeshStandardMaterial({
+            map: colorMap,
+            displacementMap: displacementMap,
+            normalMap: normalMap,
+            roughnessMap: roughnessMap,
+            roughness: 0.7,
+            metalness: 0.5,
+          })
+        }
       >
         {/* mesh for marchingball at [-0.75, 0, 0] */}
+        {/* //1 */}
         <mesh
           ref={marchingCubeRef}
-          position={[-0.7, 0.4, -0.5]}
+          position={[-0.6, 0.45, -0.6]}
           onPointerDown={(e) => {
             e.stopPropagation(); // Prevent this click from being considered "outside"
             setVisibleTooltip(true);
@@ -354,40 +365,14 @@ const MetaballsMarchingCubes = () => {
           <boxGeometry args={[1.0, 1, 1]} />
           <meshBasicMaterial opacity={0} color="blue" transparent />
           <MarchingCube
-            ref={cubeRef}
-            strength={4}
-            subtract={10}
-            position={[0.16, 0, 0]} // Use relative position since it's already in a parent mesh
+            strength={1}
+            subtract={3.5}
+            position={[0.1, 0, 0]} // Use relative position since it's already in a parent mesh
           />
-          {clicked ? (
-            <>
-              <mesh ref={haloRef} castShadow>
-                <sphereGeometry args={[0.87, 16, 16]} />
-                {/* <meshBasicMaterial color="lightblue" transparent opacity={0.1} /> */}
-                <meshPhysicalMaterial
-                  color="#a3a3a3" // Dark color
-                  transmission={0.5}
-                  thickness={0.1}
-                  roughness={0.01}
-                  opacity={0.9}
-                  transparent={true}
-                />
-                <meshBasicMaterial opacity={0} color="#a3a3a3" wireframe />
-
-                {/* Light Sources */}
-                <ambientLight intensity={0.5} />
-                <directionalLight
-                  position={[5, 5, 5]}
-                  intensity={1}
-                  castShadow
-                />
-              </mesh>
-            </>
-          ) : null}
-          <EffectComposer></EffectComposer>
         </mesh>
+        {/* //2 */}
         <mesh
-          position={[0.1, 0.25, -0.2]}
+          position={[-0.65, 0.5, -0.6]}
           onPointerDown={(e) => {
             e.stopPropagation(); // Prevent this click from being considered "outside"
             setVisibleTooltip(true);
@@ -395,12 +380,32 @@ const MetaballsMarchingCubes = () => {
             setModalContent(<Modal2 />);
           }}
         >
-          <boxGeometry args={[0.5, 0.5, 0.5]} />
+          <boxGeometry args={[1.0, 1, 1]} />
           <meshBasicMaterial opacity={0} color="blue" transparent />
-          <MarchingCube strength={0.5} subtract={1.49} position={[0, 0, 0]} />
+          <MarchingCube
+            strength={2.75}
+            subtract={3.5}
+            position={[-0.1, 0, 0]}
+          />
         </mesh>
+        {/* //3 */}
         <mesh
-          position={[0.5, -0.8, 0.25]}
+          position={[-0.42, 0.35, -0.31]}
+          onPointerDown={(e) => {
+            e.stopPropagation(); // Prevent this click from being considered "outside"
+            setVisibleTooltip(true);
+            setTooltipContent(<TooltipContentOne />);
+            setModalContent(<Modal1 />);
+          }}
+        >
+          <boxGeometry args={[1.0, 1.0, 1.0]} />
+          <meshBasicMaterial opacity={0} color="blue" transparent />
+
+          <MarchingCube strength={0.15} subtract={2} position={[0.15, 0, 0]} />
+        </mesh>
+        {/* //4 */}
+        <mesh
+          position={[-0.3, 0.15, -0.15]}
           onPointerDown={(e) => {
             e.stopPropagation(); // Prevent this click from being considered "outside"
             setVisibleTooltip(true);
@@ -411,28 +416,11 @@ const MetaballsMarchingCubes = () => {
           <boxGeometry args={[0.75, 0.75, 0.75]} />
           <meshBasicMaterial opacity={0} color="blue" transparent />
 
-          <MarchingCube strength={0.3} subtract={1} position={[0, 0, 0]} />
+          <MarchingCube strength={0.59} subtract={2} position={[0.15, 0, 0]} />
         </mesh>
+        {/* //5 */}
         <mesh
-          position={[0.2, -0.18, 0.0]}
-          onPointerDown={(e) => {
-            e.stopPropagation(); // Prevent this click from being considered "outside"
-            setVisibleTooltip(true);
-            setTooltipContent(<TooltipContentOne />);
-            setModalContent(<Modal1 />);
-          }}
-        >
-          <boxGeometry args={[0.45, 0.45, 0.45]} />
-          <meshBasicMaterial opacity={0} color="blue" transparent />
-
-          <MarchingCube
-            strength={0.06}
-            subtract={0.07}
-            position={[0.15, 0, 0]}
-          />
-        </mesh>
-        <mesh
-          position={[0.4, 0.15, 0.0]}
+          position={[-0.21, 0.015, 0.05]}
           onPointerDown={(e) => {
             e.stopPropagation(); // Prevent this click from being considered "outside"
             setVisibleTooltip(true);
@@ -443,10 +431,11 @@ const MetaballsMarchingCubes = () => {
           <boxGeometry args={[1.0, 1.0, 1.0]} />
           <meshBasicMaterial opacity={0} color="blue" transparent />
 
-          <MarchingCube strength={1} subtract={2} position={[0.15, 0, 0]} />
+          <MarchingCube strength={0.411} subtract={2} position={[0.15, 0, 0]} />
         </mesh>
+        {/* //6 */}
         <mesh
-          position={[0.4, -0.5, 0.1]}
+          position={[0.25, 0.13, -0.3595]}
           onPointerDown={(e) => {
             e.stopPropagation(); // Prevent this click from being considered "outside"
             setVisibleTooltip(true);
@@ -454,18 +443,98 @@ const MetaballsMarchingCubes = () => {
             setModalContent(<Modal1 />);
           }}
         >
-          <boxGeometry args={[1.0, 1.0, 1.0]} />
+          <boxGeometry args={[0.5, 0.75, 0.75]} />
           <meshBasicMaterial opacity={0} color="blue" transparent />
 
-          <MarchingCube strength={1} subtract={2} position={[0.15, 0, 0]} />
+          <MarchingCube strength={0.9} subtract={2.5} position={[0, 0, 0]} />
         </mesh>
-        {/* 
-        <MarchingCube strength={1} subtract={10} position={[0.5, 0, 0]} />
-        <MarchingCube strength={0.8} subtract={10} position={[0.75, 0, 0]} /> */}
-        {/* <MarchingCube strength={0.5} subtract={1} position={[0, 0, 0]} />
-        <MarchingCube strength={0.22} subtract={0.5} position={[0.75, 0, 0]} /> */}
-        <colorShiftMaterial2 ref={materialRef} key={ColorShiftMaterial2.key} />
+        {/* //7 */}
+        <mesh
+          position={[0.04, -0.15, 0.015]}
+          onPointerDown={(e) => {
+            e.stopPropagation(); // Prevent this click from being considered "outside"
+            setVisibleTooltip(true);
+            setTooltipContent(<TooltipContentOne />);
+            setModalContent(<Modal1 />);
+          }}
+        >
+          <boxGeometry args={[1, 1, 1]} />
+          <meshBasicMaterial opacity={0} color="blue" transparent />
+
+          <MarchingCube strength={0.91} subtract={4.5} position={[0, 0, 0]} />
+        </mesh>
+        {/* //8 */}
+        <mesh
+          position={[0.5, -0.4, 0.15]}
+          onPointerDown={(e) => {
+            e.stopPropagation(); // Prevent this click from being considered "outside"
+            setVisibleTooltip(true);
+            setTooltipContent(<TooltipContentOne />);
+            setModalContent(<Modal1 />);
+          }}
+        >
+          <boxGeometry args={[1, 1, 1]} />
+          <meshBasicMaterial opacity={0} color="blue" transparent />
+
+          <MarchingCube strength={1.5} subtract={3.5} position={[0, 0, 0]} />
+        </mesh>
+        {/* //9 */}
+        <mesh
+          position={[0.5, -0.65, 0.55]}
+          onPointerDown={(e) => {
+            e.stopPropagation(); // Prevent this click from being considered "outside"
+            setVisibleTooltip(true);
+            setTooltipContent(<TooltipContentOne />);
+            setModalContent(<Modal1 />);
+          }}
+        >
+          <boxGeometry args={[1, 1, 1]} />
+          <meshBasicMaterial opacity={0} color="blue" transparent />
+
+          <MarchingCube strength={2.5} subtract={4.5} position={[0, 0, 0]} />
+        </mesh>
+        {/* <colorShiftMaterial2 ref={materialRef} key={ColorShiftMaterial2.key} /> */}
+        {/* <lavaShaderMaterial ref={materialRef} /> */}
+        {/* <heatmapShaderMaterial
+          ref={materialRef}
+          key={HeatmapShaderMaterial.key}
+        /> */}
+        {/* <meshStandardMaterial
+          map={colorMap} // Color texture
+          displacementMap={displacementMap} // Displacement for uneven surfaces
+          displacementScale={0.1}
+          normalMap={normalMap} // Adds fine surface details
+          roughnessMap={roughnessMap} // Controls reflectivity
+          roughness={0.7}
+          metalness={0.5} // Add metalness for shine
+        /> */}
+        {/* Use custom shader material for MarchingCubes */}
+        {/* <marchingCubeMaterial
+          u_colorMap={colorMap}
+          u_displacementMap={displacementMap}
+          u_normalMap={normalMap}
+          u_time={useFrame((state) => state.clock.getElapsedTime())}
+        /> */}
+        <meshStandardMaterial
+          color="pink"
+          metalness={1}
+          roughness={0.5}
+          emissive="gray"
+          emissiveIntensity={0.15}
+        />
       </MarchingCubes>
+      {/* Test Sphere */}
+      {/* <mesh position={[2, 0, 0]}>
+        <sphereGeometry args={[0.5, 32, 32]} />
+        <meshStandardMaterial
+          map={colorMap}
+          displacementMap={displacementMap}
+          normalMap={normalMap}
+          roughnessMap={roughnessMap}
+          roughness={0.7}
+          metalness={0.5}
+        />
+      </mesh> */}
     </>
   );
 };
