@@ -12,3 +12,15 @@ Currently, two official plugins are available:
 
 npm i
 npm run dev
+
+para deployar
+
+npm run build
+
+
+
+# todo
+
+
+- [ ] particulas de luz atrás de cada palabra, que pulsen para invitar a hacer click
+- [ ] animacion del blob 3d 
