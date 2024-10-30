@@ -12,3 +12,19 @@ Currently, two official plugins are available:
 
 npm i
 npm run dev
+
+para deployar
+
+npm run build
+
+
+
+# todo
+
+
+- [ ] particulas de luz atrás de cada palabra, que pulsen para invitar a hacer click
+- [ ] animacion del blob 3d 
+- [ ] despues de un cierto tiempo que cierre los modales
+- [ ] que se abran y cierran los modales? como una cuestión modal, modos: automático (con modales que abren y cierran solos, lento) y modo manual
+- [ ] represntar partes de los textos como animaciones? videos? esto para pensar
+- [ ] qr a la página en sí. poner links a la pagina principal
