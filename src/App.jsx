@@ -9,7 +9,7 @@ import {
   EntrenamientoTooltip,
   InferenciaTooltip,
 } from "./components/Tooltips";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   BuclesModal,
@@ -17,6 +17,8 @@ import {
   EntrenamientoModal,
   InferenciaModal,
 } from "./components/Modals";
+import AutoTooltipSwitcher from "./components/AutoTooltipSwitcher";
+import InactivityModalTimer from "./components/InteractivityModalTimer";
 
 export default function Home() {
   const {
@@ -47,7 +49,7 @@ export default function Home() {
           <MetaballsScene />
         </Canvas>
         <h1
-          className="absolute top-[35vh] left-[20vw] text-lg text-shadow lg:left-[43vw]"
+          className="absolute top-[35vh] left-[30vw] text-2xl text-shadow lg:left-[43vw] cursor-pointer underline underline-offset-2 text-blue-200"
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<DatasetTooltip />);
@@ -58,7 +60,7 @@ export default function Home() {
           Datasets
         </h1>
         <h1
-          className="absolute top-[45vh] left-[50vw] text-lg text-shadow lg:left-[54.5vw] "
+          className="absolute top-[50vh] left-[60vw] text-2xl text-shadow lg:left-[54.5vw] cursor-pointer underline  underline-offset-2 text-blue-200"
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<EntrenamientoTooltip />);
@@ -68,8 +70,9 @@ export default function Home() {
         >
           Entrenamiento
         </h1>
+
         <h1
-          className="absolute top-[60vh] left-[20vw] text-lg text-shadow lg:left-[45vw]"
+          className="absolute top-[60vh] left-[30vw] text-2xl text-shadow lg:left-[45vw] cursor-pointer underline underline-offset-2 text-blue-200"
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<InferenciaTooltip />);
@@ -80,7 +83,7 @@ export default function Home() {
           Inferencia
         </h1>
         <h1
-          className="absolute top-[77vh] left-[42vw] text-lg text-shadow lg:left-[48.5vw]"
+          className="absolute top-[77vh] left-[45vw] text-2xl text-shadow lg:left-[48.5vw] cursor-pointer underline underline-offset-2 text-blue-200"
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<BuclesTooltip />);
@@ -90,6 +93,7 @@ export default function Home() {
         >
           Bucles
         </h1>
+        <AutoTooltipSwitcher />
       </div>
       <AnimatePresence>
         {visibleTooltip ? (
@@ -130,19 +134,20 @@ export default function Home() {
       <AnimatePresence>
         {visibleModal ? (
           <div className="w-[100vw] h-[100vh] absolute bottom-4 flex items-center justify-center">
+            <InactivityModalTimer />
             <motion.div
               className="p-6 bg-zinc-800 w-[95vw] h-[95vh] rounded border border-zinc-600 relative overflow-y-auto overflow-x-hidden"
-              initial={{ opacity: 0, y: 20 }} // Initial state (hidden)
-              animate={{ opacity: 1, y: 0 }} // Animate to visible
-              exit={{ opacity: 0, y: 20 }} // Animate out when closing
-              transition={{ duration: 0.3 }} // Duration of the animation
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3 }}
             >
               <button
                 onClick={() => {
                   setVisibleModal(false);
                   setVisibleTooltip(false);
                 }}
-                className="fixed top-3 right-2"
+                className="fixed top-5 right-8"
               >
                 <CloseIcon fill="#fafafa" size={20} />
               </button>

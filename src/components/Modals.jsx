@@ -278,5 +278,13 @@ export const BuclesModal = () => (
       pensados, para lograr mantenerme en la zona límite/frontera Out of
       Distribution (OOD).
     </p>
+    <h2 className="text-2xl mb-4">Cluster Visualization</h2>
+    <div className="w-full h-[75vh]">
+      <iframe
+        src="https://karen-pal.github.io/semantic_explore/interactive_plot_with_clusters_and_3grams_perplexity_50_FULL.html"
+        className="w-full h-full border-none"
+        title="Cluster Plot"
+      />
+    </div>
   </div>
 );
