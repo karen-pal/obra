@@ -250,8 +250,10 @@ const MetaballsMarchingCubes = () => {
 
       <MarchingCubes
         ref={marchingCubesRef}
-        resolution={64}
-        maxPolyCount={50000}
+        resolution={32}
+        maxPolyCount={20000}
+        // resolution={64}
+        // maxPolyCount={50000}
         enableUvs={false}
         enableColors={true} // We will handle colors via custom material
         strength={0.95}
