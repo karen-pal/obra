@@ -262,7 +262,7 @@ const MetaballsMarchingCubes = () => {
         {/* mesh for marchingball at [-0.75, 0, 0] */}
         {/* //1 */}
         <mesh
-          position={[-0.6, 0.45, -0.6]}
+          position={[-0.42, 0.36, -0.5]}
           onPointerDown={(e) => {
             e.stopPropagation();
             setVisibleTooltip(true);
@@ -272,7 +272,6 @@ const MetaballsMarchingCubes = () => {
         >
           <boxGeometry args={[1.0, 1, 1]} />
           <meshBasicMaterial opacity={0} color="blue" transparent />
-          {/* <MarchingCube strength={1} subtract={3.5} position={[0.1, 0, 0]} /> */}
           <AnimatedMarchingCube
             initialStrength={strength}
             subtract={subtract}
@@ -283,7 +282,7 @@ const MetaballsMarchingCubes = () => {
         </mesh>
         {/* //2 */}
         <mesh
-          position={[-0.65, 0.15, -0.6]}
+          position={[-0.45, 0.14, -0.6]}
           onPointerDown={(e) => {
             e.stopPropagation();
             setVisibleTooltip(true);
@@ -293,11 +292,6 @@ const MetaballsMarchingCubes = () => {
         >
           <boxGeometry args={[1.0, 1, 1]} />
           <meshBasicMaterial opacity={0} color="blue" transparent />
-          {/* <MarchingCube
-            strength={2.75}
-            subtract={3.5}
-            position={[-0.1, 0, 0]}
-          /> */}
           <AnimatedMarchingCube
             initialStrength={2.75}
             subtract={3.5}
@@ -319,7 +313,6 @@ const MetaballsMarchingCubes = () => {
           <boxGeometry args={[1.0, 1.0, 1.0]} />
           <meshBasicMaterial opacity={0} color="blue" transparent />
 
-          {/* <MarchingCube strength={0.15} subtract={2} position={[0.15, 0, 0]} /> */}
           <AnimatedMarchingCube
             initialStrength={0.15}
             subtract={2}
@@ -340,8 +333,6 @@ const MetaballsMarchingCubes = () => {
         >
           <boxGeometry args={[0.75, 0.75, 0.75]} />
           <meshBasicMaterial opacity={0} color="blue" transparent />
-
-          {/* <MarchingCube strength={0.59} subtract={2} position={[0.15, 0, 0]} /> */}
           <AnimatedMarchingCube
             initialStrength={0.59}
             subtract={2}
@@ -352,7 +343,7 @@ const MetaballsMarchingCubes = () => {
         </mesh>
         {/* //5 */}
         <mesh
-          position={[-0.21, 0.015, 0.05]}
+          position={[-0.21, -0.015, 0.05]}
           onPointerDown={(e) => {
             e.stopPropagation();
             setVisibleTooltip(true);
@@ -362,19 +353,11 @@ const MetaballsMarchingCubes = () => {
         >
           <boxGeometry args={[1.0, 1.0, 1.0]} />
           <meshBasicMaterial opacity={0} color="blue" transparent />
-          {/* 
-          <MarchingCube
-            //strength={0.411}
-            //subtract={2}
-            strength={strength}
-            subtract={subtract}
-            position={[0.15, 0, 0]}
-          /> */}
           <AnimatedMarchingCube
-            initialStrength={2.5}
+            initialStrength={1}
             subtract={2}
             initialPosition={[0, 0, 0]}
-            velocityY={0.5}
+            velocityY={1.15}
             boundaryY={0.5}
           />
         </mesh>
@@ -397,7 +380,7 @@ const MetaballsMarchingCubes = () => {
             subtract={2.5}
             initialPosition={[0, 0, 0]}
             velocityX={1.25}
-            boundaryX={0.45}
+            boundaryX={0.35}
           />
         </mesh>
         {/* //7 */}
@@ -417,7 +400,7 @@ const MetaballsMarchingCubes = () => {
         </mesh>
         {/* //8 */}
         <mesh
-          position={[0.05, -0.35, 0.15]}
+          position={[0.05, -0.1, 0.15]}
           onPointerDown={(e) => {
             e.stopPropagation();
             setVisibleTooltip(true);
@@ -430,16 +413,16 @@ const MetaballsMarchingCubes = () => {
 
           {/* <MarchingCube strength={1.5} subtract={3.5} position={[0, 0, 0]} /> */}
           <AnimatedMarchingCube
-            initialStrength={1.5}
-            subtract={3.5}
+            initialStrength={1.45}
+            subtract={3.3}
             initialPosition={[0, 0, 0]}
-            velocityX={0.5}
-            boundaryX={0.5}
+            velocityX={1.15}
+            boundaryX={0.4}
           />
         </mesh>
         {/* //9 */}
         <mesh
-          position={[0.5, -0.65, 0.55]}
+          position={[0.5, -0.6, 0.42]}
           onPointerDown={(e) => {
             e.stopPropagation();
             setVisibleTooltip(true);
@@ -456,7 +439,7 @@ const MetaballsMarchingCubes = () => {
             subtract={4.5}
             initialPosition={[0.0, 0, 0]}
             velocityY={0.5}
-            boundaryY={0.15}
+            boundaryY={0.1}
           />
         </mesh>
 
