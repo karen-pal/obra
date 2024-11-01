@@ -35,11 +35,11 @@ export default function Home() {
 
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden">
-      <h1 className="text-center text-3xl mt-4 mb-2">Lenguaje Frontera</h1>
+      {/* <h1 className="text-center text-3xl mt-4 mb-2">Lenguaje Frontera</h1>
       <h3 className="text-center text-xl">por Karen Palacio</h3>
       <h6 className="text-center text-sm mt-2 px-4">
         Esto es una bitácora interactiva, hacé click en distintas partes
-      </h6>
+      </h6> */}
 
       <div className="w-[100vw] h-[100vh] absolute top-[-1.9vh]">
         <Canvas
@@ -80,7 +80,7 @@ export default function Home() {
             setVisibleTooltip(true);
           }}
         >
-          Inferencia
+          Generar
         </h1>
         <h1
           className="absolute top-[77vh] left-[45vw] text-2xl text-shadow lg:left-[48.5vw] cursor-pointer underline underline-offset-2 text-blue-200"
