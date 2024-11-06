@@ -42,7 +42,7 @@ const AutoTooltipSwitcher = () => {
           setCurrentTooltip(nextTooltip);
         }, 500); // Small delay before switching to the next tooltip
       }
-    }, 120000); // 120000 = 2 minutes
+    }, 60000); // 120000 = 2 minutes
 
     return () => clearInterval(interval);
   }, [

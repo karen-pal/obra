@@ -4,7 +4,7 @@ import useTooltipStore from "../store/useTooltipStore";
 const InactivityModalTimer = () => {
   const [inactivityCounter, setInactivityCounter] = useState(0);
   const { visibleModal, setVisibleModal } = useTooltipStore();
-  const INACTIVITY_THRESHOLD = 8 * 60 * 1000; // 8 minutes
+  const INACTIVITY_THRESHOLD = 1 * 60 * 1000; // 1 minutes
 
   useEffect(() => {
     let timeout;
@@ -21,6 +21,11 @@ const InactivityModalTimer = () => {
     };
 
     const handleUserActivity = () => resetInactivity();
+
+    // Reset inactivity and start timeout when modal becomes visible
+    if (visibleModal) {
+      resetInactivity();
+    }
 
     document.addEventListener("touchstart", handleUserActivity);
     document.addEventListener("scroll", handleUserActivity);
