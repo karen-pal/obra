@@ -157,14 +157,14 @@ export default function Home() {
         ) : null}
       </AnimatePresence>
       <p className="z-10 absolute text-xs left-1 bottom-1 lg:text-sm lg:left-5 lg:bottom-5">
-        Crafted with care by{" "}
-        <a
+        Crafted with care by NataliPP
+        {/* <a
           className="underline cursor-pointer"
           href="https://portfolio-natali-pp.vercel.app/"
           target="_blank"
         >
           NataliPP
-        </a>
+        </a> */}
       </p>
     </div>
   );
