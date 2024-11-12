@@ -7,7 +7,7 @@ export const DatasetTooltip = () => {
   return (
     <div className="flex gap-2 flex-col">
       <h1 className="text-lg">Datasets</h1>
-      <img src={DatasetsSuenosTexto} alt="Datasets Sueños" />
+      {/* <img src={DatasetsSuenosTexto} alt="Datasets Sueños" /> */}
       <p>
         El punto de inicio del proyecto fue la creación de un dataset con textos
         de transcripciones de sueños, pero a lo largo del proyecto nunca dejé de
@@ -30,11 +30,11 @@ export const EntrenamientoTooltip = () => {
     <div className="flex gap-2 flex-col">
       <h1 className="text-lg">Entrenamiento</h1>
 
-      {thing && <img src={thing} alt="Thing" />}
+      {/* {thing && <img src={thing} alt="Thing" />}
 
       {audioEntrenamiento && (
         <audio src={audioEntrenamiento} controls autoPlay />
-      )}
+      )} */}
 
       <p>
         Usando el dataset de grabaciones de mi voz relatando sueños, realicé
@@ -56,8 +56,8 @@ export const InferenciaTooltip = () => {
 
   return (
     <div className="flex gap-2 flex-col">
-      <h1 className="text-lg">Inferencia</h1>
-      <img src={inferenciaGif} alt="inferencia-gif" />
+      <h1 className="text-lg">Generar</h1>
+      {/* <img src={inferenciaGif} alt="inferencia-gif" /> */}
       <p>
         Ya que diferentes modelos de generación de imagen y video tienen una
         característica gráfica particular, usé una gran variedad de modelos.
@@ -81,7 +81,7 @@ export const BuclesTooltip = () => {
   return (
     <div className="flex gap-2 flex-col">
       <h1 className="text-lg">Bucles</h1>
-      <img src={BuclesImg} alt="bucles-img" />
+      {/* <img src={BuclesImg} alt="bucles-img" /> */}
 
       <p>
         Uno de los ejes de Lenguaje Frontera es poder crear flujos complejos que

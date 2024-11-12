@@ -14,13 +14,13 @@ export const DatasetsModal = () => {
     <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold text-center">Datasets</h1>
 
-      {DatasetsSuenosTexto && (
+      {/* {DatasetsSuenosTexto && (
         <img
           className="w-full h-auto rounded-lg shadow-md"
           src={DatasetsSuenosTexto}
           alt="Datasets Overview"
         />
-      )}
+      )} */}
 
       <p className="text-base leading-relaxed">
         El punto de inicio del proyecto fue la creación de un dataset con textos
@@ -31,13 +31,13 @@ export const DatasetsModal = () => {
         volcar en descripciones textuales las imágenes generadas.
       </p>
 
-      {datasetsSueños && (
+      {/* {datasetsSueños && (
         <img
           className="w-full h-auto rounded-lg shadow-md"
           src={datasetsSueños}
           alt="datasetsSueños"
         />
-      )}
+      )} */}
 
       <p className="text-base leading-relaxed">
         El dataset original implicó digitalizar mis anotaciones de sueños, que
@@ -65,13 +65,13 @@ export const DatasetsModal = () => {
         armar un dataset de descripciones textuales de 12k filas.
       </p>
 
-      {datasetIda && (
+      {/* {datasetIda && (
         <img
           className="w-full h-auto rounded-lg shadow-md"
           src={datasetIda}
           alt="datasets-ida-img"
         />
-      )}
+      )} */}
 
       <p className="text-base leading-relaxed">
         En estas tareas de perception-language me relacioné con diversos modelos
@@ -82,7 +82,7 @@ export const DatasetsModal = () => {
         presente, induciendo alucinaciones del modelo.
       </p>
 
-      {datasetDescription && (
+      {/* {datasetDescription && (
         <img
           className="w-full h-auto rounded-lg shadow-md"
           src={datasetDescription}
@@ -96,7 +96,7 @@ export const DatasetsModal = () => {
           src={datasetImgTextosFull}
           alt="datasets-img-txt-full-img"
         />
-      )}
+      )} */}
 
       <p className="text-base leading-relaxed">
         Con estos textos fui generando diversos datasets, que usé para llevar a
@@ -106,13 +106,13 @@ export const DatasetsModal = () => {
         entre distintos sueños.
       </p>
 
-      {datasetsClusters && (
+      {/* {datasetsClusters && (
         <img
           className="w-full h-auto rounded-lg shadow-md"
           src={datasetsClusters}
           alt="datasets-clusters-img"
         />
-      )}
+      )} */}
     </div>
   );
 };
@@ -125,8 +125,8 @@ export const EntrenamientoModal = () => {
   return (
     <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold text-center"> Entrenamiento</h1>
-      <img className="w-full h-auto rounded-lg shadow-md" src={thing} />
-      <audio src={audioEntrenamiento} controls autoPlay />
+      {/* <img className="w-full h-auto rounded-lg shadow-md" src={thing} />
+      <audio src={audioEntrenamiento} controls autoPlay /> */}
       <p className="text-base leading-relaxed">
         Usando el dataset de grabaciones de mi voz relatando sueños, realicé
         varios reentrenamientos parciales (fine-tuning) de modelos preentrenados
@@ -167,12 +167,12 @@ export const InferenciaModal = ({}) => {
 
   return (
     <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold text-center">Inferencia</h1>
-      <img
+      <h1 className="text-2xl font-bold text-center">Generar</h1>
+      {/* <img
         src={inferenciaGif}
         alt="inferencia-gif"
         className="w-full h-auto rounded-lg shadow-md"
-      />
+      /> */}
       <p className="text-base leading-relaxed">
         Ya que diferentes modelos de generación de imagen y video tienen una
         característica gráfica particular, usé una gran variedad de modelos.
@@ -214,7 +214,7 @@ export const InferenciaModal = ({}) => {
         technique, half submerged in water, deep dream, made of paperclips,
         super slowmotion”.
       </p>
-      <img
+      {/* <img
         className="w-full h-auto rounded-lg shadow-md"
         src={inferenciaDeep}
         alt="inferencia-deep-img"
@@ -228,7 +228,7 @@ export const InferenciaModal = ({}) => {
         className="w-full h-auto rounded-lg shadow-md"
         src={inferenciaTwoImg}
         alt="inferencia-filters-alexnet-img"
-      />
+      /> */}
     </div>
   );
 };
@@ -246,11 +246,11 @@ export const BuclesModal = ({}) => {
   return (
     <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold text-center">Bucles</h1>
-      <img
+      {/* <img
         className="w-full h-auto rounded-lg shadow-md"
         src={BuclesImg}
         alt="bucles-img"
-      />
+      /> */}
 
       <p className="text-base leading-relaxed">
         Uno de los ejes de Lenguaje Frontera es poder crear flujos complejos que
@@ -259,18 +259,18 @@ export const BuclesModal = ({}) => {
         modelo lo tomé como un potencial input de otros a partir de la idea de
         semiosis infinita y montaje semántico.
       </p>
-      <img src={buclesProcLengConZocalo} alt="bucles-proc-lenguaje-gif" />
+      {/* <img src={buclesProcLengConZocalo} alt="bucles-proc-lenguaje-gif" /> */}
       <p className="text-base leading-relaxed">
         Por un lado establecí bucles de manera horizontal , interconectando
         modelos de distintas modalidades, y haciendo idas y vueltas entre texto,
         imagen, video, etc.
       </p>
-      <img src={buclesFlujoCompl} alt="bucles-flujo-completo-img" />
+      {/* <img src={buclesFlujoCompl} alt="bucles-flujo-completo-img" /> */}
       <p className="text-base leading-relaxed">
         Por ejemplo una parte del flujo se ve de esta forma, en donde a partir
         de cuatro videos seleccioné frames, y las usé en un flujo img2video.
       </p>
-      <img
+      {/* <img
         className="w-full h-auto rounded-lg shadow-md"
         src={bucleImg}
         alt="bucles-img"
@@ -284,7 +284,7 @@ export const BuclesModal = ({}) => {
         className="w-full h-auto rounded-lg shadow-md"
         src={bucleMiniflujo1}
         alt="bucles-miniflujo-1-img"
-      />
+      /> */}
 
       <p className="text-base leading-relaxed">
         Por otro lado también establecí bucles verticales, centrándome en una
@@ -294,7 +294,7 @@ export const BuclesModal = ({}) => {
         siempre generan un tipo de estética, que a otros les cuesta, y cada uno
         tiene un glitch diferente.
       </p>
-      <img
+      {/* <img
         className="w-full h-auto rounded-lg shadow-md"
         src={bucleMiniflujo4}
         alt="bucles-miniflujo-4-img"
@@ -303,21 +303,21 @@ export const BuclesModal = ({}) => {
         className="w-full h-auto rounded-lg shadow-md"
         src={bucleMiniflujo2}
         alt="bucles-miniflujo-2-img"
-      />
+      /> */}
 
       <p className="text-base leading-relaxed">
         Buscaba en esto romper los moldes estéticos con los cuales fueron
         pensados, para lograr mantenerme en la zona límite/frontera Out of
         Distribution (OOD).
       </p>
-      <h2 className="text-2xl mb-4">Cluster Visualization</h2>
+      {/* <h2 className="text-2xl mb-4">Cluster Visualization</h2>
       <div className="w-full h-[75vh]">
         <iframe
           src="https://karen-pal.github.io/semantic_explore/interactive_plot_with_clusters_and_3grams_perplexity_50_FULL.html"
           className="w-full h-full border-none"
           title="Cluster Plot"
         />
-      </div>
+      </div> */}
     </div>
   );
 };
