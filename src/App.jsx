@@ -199,12 +199,8 @@ export default function Home() {
           className="absolute top-[50vh] left-[60vw] text-2xl text-shadow lg:left-[54.5vw] cursor-pointer underline  underline-offset-2 text-blue-200"
           onPointerDown={(e) => {
             e.stopPropagation();
-            setTooltipContent(
-              <EntrenamientoTooltip img={Thing} audio={AudioEntrenamiento} />
-            );
-            setModalContent(
-              <EntrenamientoModal audio={AudioEntrenamiento} img={Thing} />
-            );
+            setTooltipContent(<EntrenamientoTooltip />);
+            setModalContent(<EntrenamientoModal />);
             setVisibleTooltip(true);
           }}
         >
@@ -215,13 +211,13 @@ export default function Home() {
           className="absolute top-[60vh] left-[30vw] text-2xl text-shadow lg:left-[45vw] cursor-pointer underline underline-offset-2 text-blue-200"
           onPointerDown={(e) => {
             e.stopPropagation();
-            setTooltipContent(<InferenciaTooltip img={inferenciaGif} />);
+            setTooltipContent(<InferenciaTooltip />);
             setModalContent(
               <InferenciaModal
-                inferenciaDeep={inferenciaDeep}
-                inferenciaFilters={inferenciaFilters}
-                inferenciaGif={inferenciaGif}
-                inferenciaTwoImg={inferenciaTwoImg}
+              // inferenciaDeep={inferenciaDeep}
+              // inferenciaFilters={inferenciaFilters}
+              // inferenciaGif={inferenciaGif}
+              // inferenciaTwoImg={inferenciaTwoImg}
               />
             );
             setVisibleTooltip(true);
@@ -233,17 +229,17 @@ export default function Home() {
           className="absolute top-[77vh] left-[45vw] text-2xl text-shadow lg:left-[48.5vw] cursor-pointer underline underline-offset-2 text-blue-200"
           onPointerDown={(e) => {
             e.stopPropagation();
-            setTooltipContent(<BuclesTooltip img={BuclesImg} />);
+            setTooltipContent(<BuclesTooltip />);
             setModalContent(
               <BuclesModal
-                BuclesImg={BuclesImg}
-                bucleImg={bucleImg}
-                bucleMiniflujo1={bucleMiniflujo1}
-                bucleMiniflujo2={bucleMiniflujo2}
-                bucleMiniflujo4={bucleMiniflujo4}
-                bucleMiniflujo5={bucleMiniflujo5}
-                buclesFlujoCompl={buclesFlujoCompl}
-                buclesProcLengConZocalo={buclesProcLengConZocalo}
+              // BuclesImg={BuclesImg}
+              // bucleImg={bucleImg}
+              // bucleMiniflujo1={bucleMiniflujo1}
+              // bucleMiniflujo2={bucleMiniflujo2}
+              // bucleMiniflujo4={bucleMiniflujo4}
+              // bucleMiniflujo5={bucleMiniflujo5}
+              // buclesFlujoCompl={buclesFlujoCompl}
+              // buclesProcLengConZocalo={buclesProcLengConZocalo}
               />
             );
             setVisibleTooltip(true);
