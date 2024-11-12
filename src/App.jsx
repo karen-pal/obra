@@ -9,7 +9,7 @@ import {
   EntrenamientoTooltip,
   InferenciaTooltip,
 } from "./components/Tooltips";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   BuclesModal,
@@ -32,9 +32,46 @@ export default function Home() {
     setModalContent,
   } = useTooltipStore();
   const tooltipRef = useRef(null);
+  const [isButtonVisible, setIsButtonVisible] = useState(true);
+  const handleEnterFullscreen = (e) => {
+    e.preventDefault();
+    document.documentElement
+      .requestFullscreen()
+      .then(() => {
+        setIsButtonVisible(false);
+      })
+      .catch((err) => {
+        console.error(
+          `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
+        );
+      });
+  };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement) {
+        setIsButtonVisible(true);
+      }
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
 
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden">
+      {isButtonVisible ? (
+        <button
+          onClick={(e) => handleEnterFullscreen(e)}
+          className="z-50 relative bg-slate-900 text-white p-2"
+        >
+          Fullscreen
+        </button>
+      ) : null}
+
       {/* <h1 className="text-center text-3xl mt-4 mb-2">Lenguaje Frontera</h1>
       <h3 className="text-center text-xl">por Karen Palacio</h3>
       <h6 className="text-center text-sm mt-2 px-4">
@@ -95,6 +132,7 @@ export default function Home() {
         </h1>
         <AutoTooltipSwitcher />
       </div>
+
       <AnimatePresence>
         {visibleTooltip ? (
           <div className="w-[100vw] h-[15vh] absolute bottom-[15vh] flex items-center justify-center lg:w-[35vw] lg:h-[90vh] lg:bottom-[5vh] lg:left-[1vw]">
