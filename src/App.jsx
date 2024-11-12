@@ -43,8 +43,6 @@ import {
   buclesProcLengConZocalo,
 } from "./images/images";
 
-//import datasetsSueños from  "./assets/dataset_suenos.png";
-//import DatasetsSuenosTexto from "./assets/datasets/dataset_sueños_textos.png";
 import useAssetStore from "./store/useAssetsStore";
 
 export default function Home() {
@@ -87,38 +85,6 @@ export default function Home() {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
     };
   }, []);
-
-  const preloadImages = (images) => {
-    images.forEach((image) => {
-      const img = new Image();
-      img.src = image;
-    });
-  };
-
-  // useEffect(() => {
-  //   preloadImages([
-  //     datasetsSueños,
-  //     datasetIda,
-  //     datasetDescription,
-  //     datasetImgTextosFull,
-  //     datasetsClusters,
-  //     DatasetsSuenosTexto,
-  //     AudioEntrenamiento,
-  //     Thing,
-  //     inferenciaDeep,
-  //     inferenciaFilters,
-  //     inferenciaGif,
-  //     inferenciaTwoImg,
-  //     BuclesImg,
-  //     bucleImg,
-  //     bucleMiniflujo1,
-  //     bucleMiniflujo2,
-  //     bucleMiniflujo4,
-  //     bucleMiniflujo5,
-  //     buclesFlujoCompl,
-  //     buclesProcLengConZocalo,
-  //   ]);
-  // }, []);
 
   const preloadAssets = useAssetStore((state) => state.preloadAssets);
   const assets = useAssetStore((state) => state.assets);
@@ -180,16 +146,7 @@ export default function Home() {
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<DatasetTooltip />);
-            setModalContent(
-              <DatasetsModal
-              // DatasetsSuenosTexto={DatasetsSuenosTexto}
-              // datasetsSueños={datasetsSueños}
-              // datasetIda={datasetIda}
-              // datasetDescription={datasetDescription}
-              // datasetImgTextosFull={datasetImgTextosFull}
-              // datasetsClusters={datasetsClusters}
-              />
-            );
+            setModalContent(<DatasetsModal />);
             setVisibleTooltip(true);
           }}
         >
@@ -212,14 +169,7 @@ export default function Home() {
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<InferenciaTooltip />);
-            setModalContent(
-              <InferenciaModal
-              // inferenciaDeep={inferenciaDeep}
-              // inferenciaFilters={inferenciaFilters}
-              // inferenciaGif={inferenciaGif}
-              // inferenciaTwoImg={inferenciaTwoImg}
-              />
-            );
+            setModalContent(<InferenciaModal />);
             setVisibleTooltip(true);
           }}
         >
@@ -230,18 +180,7 @@ export default function Home() {
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<BuclesTooltip />);
-            setModalContent(
-              <BuclesModal
-              // BuclesImg={BuclesImg}
-              // bucleImg={bucleImg}
-              // bucleMiniflujo1={bucleMiniflujo1}
-              // bucleMiniflujo2={bucleMiniflujo2}
-              // bucleMiniflujo4={bucleMiniflujo4}
-              // bucleMiniflujo5={bucleMiniflujo5}
-              // buclesFlujoCompl={buclesFlujoCompl}
-              // buclesProcLengConZocalo={buclesProcLengConZocalo}
-              />
-            );
+            setModalContent(<BuclesModal />);
             setVisibleTooltip(true);
           }}
         >

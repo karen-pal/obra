@@ -1,26 +1,4 @@
-// import Thing from "../assets/thing.jpg";
-// import AudioEntrenamiento from "../assets/kardaver-speaks-no-background-noise.wav";
-// import inferenciaGif from "../assets/inferencia.gif";
-// import DatasetsSuenosTexto from "../assets/datasets/dataset_sueños_textos.png";
-// import BuclesImg from "../assets/bucles/flujo_completo_w.png";
-
 import useAssetStore from "../store/useAssetsStore";
-
-// export const DatasetTooltip = () => (
-
-//   <div className="flex gap-2 flex-col">
-//     <h1 className="text-lg">Datasets</h1>
-//     <img src={DatasetsSuenosTexto} />
-//     <p>
-//       El punto de inicio del proyecto fue la creación de un dataset con textos
-//       de transcripciones de sueños, pero a lo largo del proyecto nunca dejé de
-//       crear datasets. Ya sea grabándome contando en voz alta mis sueños para
-//       generar la parte sonora, como también haciendo idas y vueltas entre la
-//       escritura de textos para guiar la generación de imagen y video, y el
-//       volcar en descripciones textuales las imágenes generadas.
-//     </p>
-//   </div>
-// );
 
 export const DatasetTooltip = () => {
   const getAsset = useAssetStore((state) => state.getAsset);
@@ -42,29 +20,9 @@ export const DatasetTooltip = () => {
   );
 };
 
-// export const EntrenamientoTooltip = () => (
-//   <div className="flex gap-2 flex-col">
-//     <h1 className="text-lg">Entrenamiento</h1>
-//     <img src={Thing} />
-//     <audio src={AudioEntrenamiento} controls autoPlay />
-//     <p>
-//       Usando el dataset de grabaciones de mi voz relatando sueños, realicé
-//       varios reentrenamientos parciales (fine-tuning) de modelos preentrenados
-//       multimodales libres que toman texto y devuelven sonido. Estos modelos
-//       estaban pensados para generar música, especializándose en música para
-//       comerciales, sonidos FX y cortinas publicitarias. Me relacioné con el
-//       concepto de "olvido catastrófico" para accionar sobre las capacidades
-//       generativas de estos modelos y obtener variedad en los modos en que los
-//       modelos aprenden a generar mi voz.
-//     </p>
-//   </div>
-// );
-
 export const EntrenamientoTooltip = () => {
-  // Access the preloaded assets using Zustand store
   const getAsset = useAssetStore((state) => state.getAsset);
 
-  // Get assets from Zustand store
   const thing = getAsset("Thing");
   const audioEntrenamiento = getAsset("AudioEntrenamiento");
 
