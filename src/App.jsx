@@ -182,12 +182,12 @@ export default function Home() {
             setTooltipContent(<DatasetTooltip />);
             setModalContent(
               <DatasetsModal
-                DatasetsSuenosTexto={DatasetsSuenosTexto}
-                datasetsSueños={datasetsSueños}
-                datasetIda={datasetIda}
-                datasetDescription={datasetDescription}
-                datasetImgTextosFull={datasetImgTextosFull}
-                datasetsClusters={datasetsClusters}
+              // DatasetsSuenosTexto={DatasetsSuenosTexto}
+              // datasetsSueños={datasetsSueños}
+              // datasetIda={datasetIda}
+              // datasetDescription={datasetDescription}
+              // datasetImgTextosFull={datasetImgTextosFull}
+              // datasetsClusters={datasetsClusters}
               />
             );
             setVisibleTooltip(true);
