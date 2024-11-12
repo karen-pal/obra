@@ -1,29 +1,52 @@
-import Thing from "../assets/thing.jpg";
-import AudioEntrenamiento from "../assets/kardaver-speaks-no-background-noise.wav";
-import inferenciaGif from "../assets/inferencia.gif";
-import DatasetsSuenosTexto from "../assets/datasets/dataset_sueños_textos.png";
-import BuclesImg from "../assets/bucles/flujo_completo_w.png";
+// import Thing from "../assets/thing.jpg";
+// import AudioEntrenamiento from "../assets/kardaver-speaks-no-background-noise.wav";
+// import inferenciaGif from "../assets/inferencia.gif";
+// import DatasetsSuenosTexto from "../assets/datasets/dataset_sueños_textos.png";
+// import BuclesImg from "../assets/bucles/flujo_completo_w.png";
 
-export const DatasetTooltip = () => (
-  <div className="flex gap-2 flex-col">
-    <h1 className="text-lg">Datasets</h1>
-    <img src={DatasetsSuenosTexto} />
-    <p>
-      El punto de inicio del proyecto fue la creación de un dataset con textos
-      de transcripciones de sueños, pero a lo largo del proyecto nunca dejé de
-      crear datasets. Ya sea grabándome contando en voz alta mis sueños para
-      generar la parte sonora, como también haciendo idas y vueltas entre la
-      escritura de textos para guiar la generación de imagen y video, y el
-      volcar en descripciones textuales las imágenes generadas.
-    </p>
-  </div>
-);
+import useAssetStore from "../store/useAssetsStore";
 
-export const EntrenamientoTooltip = () => (
+// export const DatasetTooltip = () => (
+
+//   <div className="flex gap-2 flex-col">
+//     <h1 className="text-lg">Datasets</h1>
+//     <img src={DatasetsSuenosTexto} />
+//     <p>
+//       El punto de inicio del proyecto fue la creación de un dataset con textos
+//       de transcripciones de sueños, pero a lo largo del proyecto nunca dejé de
+//       crear datasets. Ya sea grabándome contando en voz alta mis sueños para
+//       generar la parte sonora, como también haciendo idas y vueltas entre la
+//       escritura de textos para guiar la generación de imagen y video, y el
+//       volcar en descripciones textuales las imágenes generadas.
+//     </p>
+//   </div>
+// );
+
+export const DatasetTooltip = () => {
+  const getAsset = useAssetStore((state) => state.getAsset);
+  const DatasetsSuenosTexto = getAsset("DatasetsSuenosTexto");
+
+  return (
+    <div className="flex gap-2 flex-col">
+      <h1 className="text-lg">Datasets</h1>
+      <img src={DatasetsSuenosTexto} alt="Datasets Sueños" />
+      <p>
+        El punto de inicio del proyecto fue la creación de un dataset con textos
+        de transcripciones de sueños, pero a lo largo del proyecto nunca dejé de
+        crear datasets. Ya sea grabándome contando en voz alta mis sueños para
+        generar la parte sonora, como también haciendo idas y vueltas entre la
+        escritura de textos para guiar la generación de imagen y video, y el
+        volcar en descripciones textuales las imágenes generadas.
+      </p>
+    </div>
+  );
+};
+
+export const EntrenamientoTooltip = ({ img, audio }) => (
   <div className="flex gap-2 flex-col">
     <h1 className="text-lg">Entrenamiento</h1>
-    <img src={Thing} />
-    <audio src={AudioEntrenamiento} controls autoPlay />
+    <img src={img} />
+    <audio src={audio} controls autoPlay />
     <p>
       Usando el dataset de grabaciones de mi voz relatando sueños, realicé
       varios reentrenamientos parciales (fine-tuning) de modelos preentrenados
@@ -37,10 +60,10 @@ export const EntrenamientoTooltip = () => (
   </div>
 );
 
-export const InferenciaTooltip = () => (
+export const InferenciaTooltip = ({ img }) => (
   <div className="flex gap-2 flex-col">
     <h1 className="text-lg">Inferencia</h1>
-    <img src={inferenciaGif} alt="inferencia-gif" />
+    <img src={img} alt="inferencia-gif" />
     <p>
       Ya que diferentes modelos de generación de imagen y video tienen una
       característica gráfica particular, usé una gran variedad de modelos.
@@ -56,10 +79,10 @@ export const InferenciaTooltip = () => (
   </div>
 );
 
-export const BuclesTooltip = () => (
+export const BuclesTooltip = ({ img }) => (
   <div className="flex gap-2 flex-col">
     <h1 className="text-lg">Bucles</h1>
-    <img src={BuclesImg} alt="bucles-img" />
+    <img src={img} alt="bucles-img" />
 
     <p>
       Uno de los ejes de Lenguaje Frontera es poder crear flujos complejos que

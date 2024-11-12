@@ -20,6 +20,33 @@ import {
 import AutoTooltipSwitcher from "./components/AutoTooltipSwitcher";
 import InactivityModalTimer from "./components/InteractivityModalTimer";
 
+import {
+  datasetsSueños,
+  datasetIda,
+  datasetDescription,
+  datasetImgTextosFull,
+  datasetsClusters,
+  DatasetsSuenosTexto,
+  AudioEntrenamiento,
+  Thing,
+  inferenciaDeep,
+  inferenciaFilters,
+  inferenciaGif,
+  inferenciaTwoImg,
+  BuclesImg,
+  bucleImg,
+  bucleMiniflujo1,
+  bucleMiniflujo2,
+  bucleMiniflujo4,
+  bucleMiniflujo5,
+  buclesFlujoCompl,
+  buclesProcLengConZocalo,
+} from "./images/images";
+
+//import datasetsSueños from  "./assets/dataset_suenos.png";
+//import DatasetsSuenosTexto from "./assets/datasets/dataset_sueños_textos.png";
+import useAssetStore from "./store/useAssetsStore";
+
 export default function Home() {
   const {
     visibleTooltip,
@@ -61,6 +88,69 @@ export default function Home() {
     };
   }, []);
 
+  const preloadImages = (images) => {
+    images.forEach((image) => {
+      const img = new Image();
+      img.src = image;
+    });
+  };
+
+  // useEffect(() => {
+  //   preloadImages([
+  //     datasetsSueños,
+  //     datasetIda,
+  //     datasetDescription,
+  //     datasetImgTextosFull,
+  //     datasetsClusters,
+  //     DatasetsSuenosTexto,
+  //     AudioEntrenamiento,
+  //     Thing,
+  //     inferenciaDeep,
+  //     inferenciaFilters,
+  //     inferenciaGif,
+  //     inferenciaTwoImg,
+  //     BuclesImg,
+  //     bucleImg,
+  //     bucleMiniflujo1,
+  //     bucleMiniflujo2,
+  //     bucleMiniflujo4,
+  //     bucleMiniflujo5,
+  //     buclesFlujoCompl,
+  //     buclesProcLengConZocalo,
+  //   ]);
+  // }, []);
+
+  const preloadAssets = useAssetStore((state) => state.preloadAssets);
+  const assets = useAssetStore((state) => state.assets);
+  useEffect(() => {
+    preloadAssets([
+      datasetsSueños,
+      datasetIda,
+      datasetDescription,
+      datasetImgTextosFull,
+      datasetsClusters,
+      DatasetsSuenosTexto,
+      AudioEntrenamiento,
+      Thing,
+      inferenciaDeep,
+      inferenciaFilters,
+      inferenciaGif,
+      inferenciaTwoImg,
+      BuclesImg,
+      bucleImg,
+      bucleMiniflujo1,
+      bucleMiniflujo2,
+      bucleMiniflujo4,
+      bucleMiniflujo5,
+      buclesFlujoCompl,
+      buclesProcLengConZocalo,
+    ]);
+  }, [preloadAssets]);
+  useEffect(() => {
+    // Log assets after they are updated in Zustand
+    console.log("Updated Zustand store state with assets:", assets);
+  }, [assets]);
+
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden">
       {isButtonVisible ? (
@@ -90,7 +180,16 @@ export default function Home() {
           onPointerDown={(e) => {
             e.stopPropagation();
             setTooltipContent(<DatasetTooltip />);
-            setModalContent(<DatasetsModal />);
+            setModalContent(
+              <DatasetsModal
+                DatasetsSuenosTexto={DatasetsSuenosTexto}
+                datasetsSueños={datasetsSueños}
+                datasetIda={datasetIda}
+                datasetDescription={datasetDescription}
+                datasetImgTextosFull={datasetImgTextosFull}
+                datasetsClusters={datasetsClusters}
+              />
+            );
             setVisibleTooltip(true);
           }}
         >
@@ -100,8 +199,12 @@ export default function Home() {
           className="absolute top-[50vh] left-[60vw] text-2xl text-shadow lg:left-[54.5vw] cursor-pointer underline  underline-offset-2 text-blue-200"
           onPointerDown={(e) => {
             e.stopPropagation();
-            setTooltipContent(<EntrenamientoTooltip />);
-            setModalContent(<EntrenamientoModal />);
+            setTooltipContent(
+              <EntrenamientoTooltip img={Thing} audio={AudioEntrenamiento} />
+            );
+            setModalContent(
+              <EntrenamientoModal audio={AudioEntrenamiento} img={Thing} />
+            );
             setVisibleTooltip(true);
           }}
         >
@@ -112,8 +215,15 @@ export default function Home() {
           className="absolute top-[60vh] left-[30vw] text-2xl text-shadow lg:left-[45vw] cursor-pointer underline underline-offset-2 text-blue-200"
           onPointerDown={(e) => {
             e.stopPropagation();
-            setTooltipContent(<InferenciaTooltip />);
-            setModalContent(<InferenciaModal />);
+            setTooltipContent(<InferenciaTooltip img={inferenciaGif} />);
+            setModalContent(
+              <InferenciaModal
+                inferenciaDeep={inferenciaDeep}
+                inferenciaFilters={inferenciaFilters}
+                inferenciaGif={inferenciaGif}
+                inferenciaTwoImg={inferenciaTwoImg}
+              />
+            );
             setVisibleTooltip(true);
           }}
         >
@@ -123,8 +233,19 @@ export default function Home() {
           className="absolute top-[77vh] left-[45vw] text-2xl text-shadow lg:left-[48.5vw] cursor-pointer underline underline-offset-2 text-blue-200"
           onPointerDown={(e) => {
             e.stopPropagation();
-            setTooltipContent(<BuclesTooltip />);
-            setModalContent(<BuclesModal />);
+            setTooltipContent(<BuclesTooltip img={BuclesImg} />);
+            setModalContent(
+              <BuclesModal
+                BuclesImg={BuclesImg}
+                bucleImg={bucleImg}
+                bucleMiniflujo1={bucleMiniflujo1}
+                bucleMiniflujo2={bucleMiniflujo2}
+                bucleMiniflujo4={bucleMiniflujo4}
+                bucleMiniflujo5={bucleMiniflujo5}
+                buclesFlujoCompl={buclesFlujoCompl}
+                buclesProcLengConZocalo={buclesProcLengConZocalo}
+              />
+            );
             setVisibleTooltip(true);
           }}
         >

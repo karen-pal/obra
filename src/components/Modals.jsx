@@ -1,121 +1,271 @@
-import datasetsSueños from "../assets/dataset_suenos.png";
-import datasetIda from "../assets/datasets/lda.png";
-import datasetDescription from "../assets/datasets/description.png";
-import datasetImgTextosFull from "../assets/datasets/dataset_imagen_textos_FULL.png";
-import datasetsClusters from "../assets/datasets/clusters.png";
-import DatasetsSuenosTexto from "../assets/datasets/dataset_sueños_textos.png";
-// Entrenanmiento
-import AudioEntrenamiento from "../assets/kardaver-speaks-no-background-noise.wav";
-import Thing from "../assets/thing.jpg";
+// import datasetsSueños from "../assets/dataset_suenos.png";
+// import datasetIda from "../assets/datasets/lda.png";
+// import datasetDescription from "../assets/datasets/description.png";
+// import datasetImgTextosFull from "../assets/datasets/dataset_imagen_textos_FULL.png";
+// import datasetsClusters from "../assets/datasets/clusters.png";
+// import DatasetsSuenosTexto from "../assets/datasets/dataset_sueños_textos.png";
+// // Entrenanmiento
+// import AudioEntrenamiento from "../assets/kardaver-speaks-no-background-noise.wav";
+// import Thing from "../assets/thing.jpg";
 
-//Inferencia
-import inferenciaGif from "../assets/inferencia.gif";
-import inferenciaDeep from "../assets/inferencia/deepdream.png";
-import inferenciaFilters from "../assets/inferencia/filters_alexnet.png";
-import inferenciaTwoImg from "/desktop/inferencia_comparacion.png";
-//Bucles
-import BuclesImg from "../assets/bucles/flujo_completo_w.png";
-import buclesProcLengConZocalo from "../assets/bucles/proceso_lenguaje_2_con_zocalo.gif";
-import buclesFlujoCompl from "../assets/bucles/flujo_completo_2.jpg";
-import bucleImg from "../assets/bucles/bucle.png";
-import bucleMiniflujo5 from "../assets/bucles/miniflujo_5_w.png";
-import bucleMiniflujo1 from "../assets/bucles/miniflujo_1_w.png";
-import bucleMiniflujo2 from "../assets/bucles/miniflujo_2_w.png";
-import bucleMiniflujo4 from "../assets/bucles/miniflujo_4_w.png";
+// //Inferencia
+// import inferenciaGif from "../assets/inferencia.gif";
+// import inferenciaDeep from "../assets/inferencia/deepdream.png";
+// import inferenciaFilters from "../assets/inferencia/filters_alexnet.png";
+// import inferenciaTwoImg from "/desktop/inferencia_comparacion.png";
+// //Bucles
+// import BuclesImg from "../assets/bucles/flujo_completo_w.png";
+// import buclesProcLengConZocalo from "../assets/bucles/proceso_lenguaje_2_con_zocalo.gif";
+// import buclesFlujoCompl from "../assets/bucles/flujo_completo_2.jpg";
+// import bucleImg from "../assets/bucles/bucle.png";
+// import bucleMiniflujo5 from "../assets/bucles/miniflujo_5_w.png";
+// import bucleMiniflujo1 from "../assets/bucles/miniflujo_1_w.png";
+// import bucleMiniflujo2 from "../assets/bucles/miniflujo_2_w.png";
+// import bucleMiniflujo4 from "../assets/bucles/miniflujo_4_w.png";
+// import {
+//   datasetsSueños,
+//   datasetIda,
+//   datasetDescription,
+//   datasetImgTextosFull,
+//   datasetsClusters,
+//   DatasetsSuenosTexto,
+//   AudioEntrenamiento,
+//   Thing,
+//   inferenciaDeep,
+//   inferenciaFilters,
+//   inferenciaGif,
+//   inferenciaTwoImg,
+//   BuclesImg,
+//   bucleImg,
+//   bucleMiniflujo1,
+//   bucleMiniflujo2,
+//   bucleMiniflujo4,
+//   bucleMiniflujo5,
+//   buclesFlujoCompl,
+//   buclesProcLengConZocalo,
+// } from "../images/images";
+import useAssetStore from "../store/useAssetsStore";
 
-export const DatasetsModal = () => (
-  <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
-    <h1 className="text-2xl font-bold text-center">Datasets</h1>
-    <img
-      className="w-full h-auto rounded-lg shadow-md"
-      src={DatasetsSuenosTexto}
-      alt="Datasets Overview"
-    />
+// export const DatasetsModal = ({
+//   DatasetsSuenosTexto,
+//   datasetsSueños,
+//   datasetIda,
+//   datasetDescription,
+//   datasetImgTextosFull,
+//   datasetsClusters,
+// }) => (
+//   <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
+//     <h1 className="text-2xl font-bold text-center">Datasets</h1>
+//     <img
+//       className="w-full h-auto rounded-lg shadow-md"
+//       src={DatasetsSuenosTexto}
+//       alt="Datasets Overview"
+//     />
 
-    <p className="text-base leading-relaxed">
-      El punto de inicio del proyecto fue la creación de un dataset con textos
-      de transcripciones de sueños, pero a lo largo del proyecto nunca dejé de
-      crear datasets. Ya sea grabándome contando en voz alta mis sueños para
-      generar la parte sonora, como también haciendo idas y vueltas entre la
-      escritura de textos para guiar la generación de imagen y video, y el
-      volcar en descripciones textuales las imágenes generadas.
-    </p>
-    <img
-      className="w-full h-auto rounded-lg shadow-md"
-      src={datasetsSueños}
-      alt="datasetsSueños"
-    />
+//     <p className="text-base leading-relaxed">
+//       El punto de inicio del proyecto fue la creación de un dataset con textos
+//       de transcripciones de sueños, pero a lo largo del proyecto nunca dejé de
+//       crear datasets. Ya sea grabándome contando en voz alta mis sueños para
+//       generar la parte sonora, como también haciendo idas y vueltas entre la
+//       escritura de textos para guiar la generación de imagen y video, y el
+//       volcar en descripciones textuales las imágenes generadas.
+//     </p>
+//     <img
+//       className="w-full h-auto rounded-lg shadow-md"
+//       src={datasetsSueños}
+//       alt="datasetsSueños"
+//     />
 
-    <p className="text-base leading-relaxed">
-      El dataset original implicó digitalizar mis anotaciones de sueños, que
-      estaban dispersas en decenas de cuadernos y bitácoras artísticas.
-    </p>
+//     <p className="text-base leading-relaxed">
+//       El dataset original implicó digitalizar mis anotaciones de sueños, que
+//       estaban dispersas en decenas de cuadernos y bitácoras artísticas.
+//     </p>
 
-    <p className="text-base leading-relaxed">
-      En el proceso empecé a notar patrones y temáticas. Luego con metodologías
-      de aprendizaje no supervisado, pude ahondar más en los temas que se
-      repetían en distintos sueños. A partir de esto, encontré un “tipo de
-      sueño” que vengo teniendo hace aproximadamente cinco años, en el cual
-      sueño que despierto y me doy cuenta que estoy soñando, por lo que
-      despierto nuevamente dentro de “otro sueño”, y así en bucles. Ese tipo de
-      sueño estaba muy relacionado con mi interés por las narrativas no
-      lineales, por lo que utilicé esas transcripciones como prompts en gran
-      parte de la generación a partir de texto. Venía manteniendo otro tipo de
-      archivo personal a partir de mandarme una nota de voz a mí misma en la
-      cual contaba mi sueño al despertarme. Quise recuperar estas grabaciones y
-      ampliarlas con lecturas de las transcripciones, generando un dataset de
-      voz. Generando imágenes y videos con diferentes modelos, pude armar
-      diferentes datasets a partir de utilizar modelos que realizan tareas de
-      text inversion, perception-language y de prompt engineering. Esto se veía
-      como una exponenciación de datos que tenía disponibles, ya que, por
-      ejemplo, en un momento a partir de 3 minutos de video llegué a armar un
-      dataset de descripciones textuales de 12k filas.
-    </p>
-    <img
-      className="w-full h-auto rounded-lg shadow-md"
-      src={datasetIda}
-      alt="datasets-ida-img"
-    />
+//     <p className="text-base leading-relaxed">
+//       En el proceso empecé a notar patrones y temáticas. Luego con metodologías
+//       de aprendizaje no supervisado, pude ahondar más en los temas que se
+//       repetían en distintos sueños. A partir de esto, encontré un “tipo de
+//       sueño” que vengo teniendo hace aproximadamente cinco años, en el cual
+//       sueño que despierto y me doy cuenta que estoy soñando, por lo que
+//       despierto nuevamente dentro de “otro sueño”, y así en bucles. Ese tipo de
+//       sueño estaba muy relacionado con mi interés por las narrativas no
+//       lineales, por lo que utilicé esas transcripciones como prompts en gran
+//       parte de la generación a partir de texto. Venía manteniendo otro tipo de
+//       archivo personal a partir de mandarme una nota de voz a mí misma en la
+//       cual contaba mi sueño al despertarme. Quise recuperar estas grabaciones y
+//       ampliarlas con lecturas de las transcripciones, generando un dataset de
+//       voz. Generando imágenes y videos con diferentes modelos, pude armar
+//       diferentes datasets a partir de utilizar modelos que realizan tareas de
+//       text inversion, perception-language y de prompt engineering. Esto se veía
+//       como una exponenciación de datos que tenía disponibles, ya que, por
+//       ejemplo, en un momento a partir de 3 minutos de video llegué a armar un
+//       dataset de descripciones textuales de 12k filas.
+//     </p>
+//     <img
+//       className="w-full h-auto rounded-lg shadow-md"
+//       src={datasetIda}
+//       alt="datasets-ida-img"
+//     />
 
-    <p className="text-base leading-relaxed">
-      En estas tareas de perception-language me relacioné con diversos modelos
-      indicándoles primero que describan las imágenes que componían los videos
-      que iba armando, y luego que interpreten cada imagen como un sueño y que
-      describan lo que sucedía en ese sueño. Otra cosa que les indiqué fue que
-      transcriban el texto presente en la imagen - incluso si no había texto
-      presente, induciendo alucinaciones del modelo.
-    </p>
-    <img
-      className="w-full h-auto rounded-lg shadow-md"
-      src={datasetDescription}
-      alt="datasets-description-img"
-    />
-    <img
-      className="w-full h-auto rounded-lg shadow-md"
-      src={datasetImgTextosFull}
-      alt="datasets-img-txt-full-img"
-    />
+//     <p className="text-base leading-relaxed">
+//       En estas tareas de perception-language me relacioné con diversos modelos
+//       indicándoles primero que describan las imágenes que componían los videos
+//       que iba armando, y luego que interpreten cada imagen como un sueño y que
+//       describan lo que sucedía en ese sueño. Otra cosa que les indiqué fue que
+//       transcriban el texto presente en la imagen - incluso si no había texto
+//       presente, induciendo alucinaciones del modelo.
+//     </p>
+//     <img
+//       className="w-full h-auto rounded-lg shadow-md"
+//       src={datasetDescription}
+//       alt="datasets-description-img"
+//     />
+//     <img
+//       className="w-full h-auto rounded-lg shadow-md"
+//       src={datasetImgTextosFull}
+//       alt="datasets-img-txt-full-img"
+//     />
 
-    <p className="text-base leading-relaxed">
-      Con estos textos fui generando diversos datasets, que usé para llevar a
-      cabo tareas de aprendizaje no supervisado para poder encontrar más
-      relaciones entre diversos videos, para potenciar posibilidades de montaje
-      semántico, y para visualizar de manera indirecta relaciones entre
-      distintos sueños.
-    </p>
-    <img
-      className="w-full h-auto rounded-lg shadow-md"
-      src={datasetsClusters}
-      alt="datasets-clusters-img"
-    />
-  </div>
-);
+//     <p className="text-base leading-relaxed">
+//       Con estos textos fui generando diversos datasets, que usé para llevar a
+//       cabo tareas de aprendizaje no supervisado para poder encontrar más
+//       relaciones entre diversos videos, para potenciar posibilidades de montaje
+//       semántico, y para visualizar de manera indirecta relaciones entre
+//       distintos sueños.
+//     </p>
+//     <img
+//       className="w-full h-auto rounded-lg shadow-md"
+//       src={datasetsClusters}
+//       alt="datasets-clusters-img"
+//     />
+//   </div>
+// );
 
-export const EntrenamientoModal = () => (
+export const DatasetsModal = () => {
+  // Access preloaded assets from the Zustand store
+  const getAsset = useAssetStore((state) => state.getAsset);
+
+  // Retrieve the preloaded assets from the store
+  const DatasetsSuenosTexto = getAsset("datasetsSueños");
+  const datasetsSueños = getAsset("datasetsSueñosFull");
+  const datasetIda = getAsset("datasetIda");
+  const datasetDescription = getAsset("datasetDescription");
+  const datasetImgTextosFull = getAsset("datasetImgTextosFull");
+  const datasetsClusters = getAsset("datasetsClusters");
+
+  return (
+    <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
+      <h1 className="text-2xl font-bold text-center">Datasets</h1>
+
+      {/* Image Rendering */}
+      {DatasetsSuenosTexto && (
+        <img
+          className="w-full h-auto rounded-lg shadow-md"
+          src={DatasetsSuenosTexto}
+          alt="Datasets Overview"
+        />
+      )}
+
+      <p className="text-base leading-relaxed">
+        El punto de inicio del proyecto fue la creación de un dataset con textos
+        de transcripciones de sueños, pero a lo largo del proyecto nunca dejé de
+        crear datasets. Ya sea grabándome contando en voz alta mis sueños para
+        generar la parte sonora, como también haciendo idas y vueltas entre la
+        escritura de textos para guiar la generación de imagen y video, y el
+        volcar en descripciones textuales las imágenes generadas.
+      </p>
+
+      {datasetsSueños && (
+        <img
+          className="w-full h-auto rounded-lg shadow-md"
+          src={datasetsSueños}
+          alt="datasetsSueños"
+        />
+      )}
+
+      <p className="text-base leading-relaxed">
+        El dataset original implicó digitalizar mis anotaciones de sueños, que
+        estaban dispersas en decenas de cuadernos y bitácoras artísticas.
+      </p>
+
+      <p className="text-base leading-relaxed">
+        En el proceso empecé a notar patrones y temáticas. Luego con
+        metodologías de aprendizaje no supervisado, pude ahondar más en los
+        temas que se repetían en distintos sueños. A partir de esto, encontré un
+        “tipo de sueño” que vengo teniendo hace aproximadamente cinco años, en
+        el cual sueño que despierto y me doy cuenta que estoy soñando, por lo
+        que despierto nuevamente dentro de “otro sueño”, y así en bucles. Ese
+        tipo de sueño estaba muy relacionado con mi interés por las narrativas
+        no lineales, por lo que utilicé esas transcripciones como prompts en
+        gran parte de la generación a partir de texto. Venía manteniendo otro
+        tipo de archivo personal a partir de mandarme una nota de voz a mí misma
+        en la cual contaba mi sueño al despertarme. Quise recuperar estas
+        grabaciones y ampliarlas con lecturas de las transcripciones, generando
+        un dataset de voz. Generando imágenes y videos con diferentes modelos,
+        pude armar diferentes datasets a partir de utilizar modelos que realizan
+        tareas de text inversion, perception-language y de prompt engineering.
+        Esto se veía como una exponenciación de datos que tenía disponibles, ya
+        que, por ejemplo, en un momento a partir de 3 minutos de video llegué a
+        armar un dataset de descripciones textuales de 12k filas.
+      </p>
+
+      {datasetIda && (
+        <img
+          className="w-full h-auto rounded-lg shadow-md"
+          src={datasetIda}
+          alt="datasets-ida-img"
+        />
+      )}
+
+      <p className="text-base leading-relaxed">
+        En estas tareas de perception-language me relacioné con diversos modelos
+        indicándoles primero que describan las imágenes que componían los videos
+        que iba armando, y luego que interpreten cada imagen como un sueño y que
+        describan lo que sucedía en ese sueño. Otra cosa que les indiqué fue que
+        transcriban el texto presente en la imagen - incluso si no había texto
+        presente, induciendo alucinaciones del modelo.
+      </p>
+
+      {datasetDescription && (
+        <img
+          className="w-full h-auto rounded-lg shadow-md"
+          src={datasetDescription}
+          alt="datasets-description-img"
+        />
+      )}
+
+      {datasetImgTextosFull && (
+        <img
+          className="w-full h-auto rounded-lg shadow-md"
+          src={datasetImgTextosFull}
+          alt="datasets-img-txt-full-img"
+        />
+      )}
+
+      <p className="text-base leading-relaxed">
+        Con estos textos fui generando diversos datasets, que usé para llevar a
+        cabo tareas de aprendizaje no supervisado para poder encontrar más
+        relaciones entre diversos videos, para potenciar posibilidades de
+        montaje semántico, y para visualizar de manera indirecta relaciones
+        entre distintos sueños.
+      </p>
+
+      {datasetsClusters && (
+        <img
+          className="w-full h-auto rounded-lg shadow-md"
+          src={datasetsClusters}
+          alt="datasets-clusters-img"
+        />
+      )}
+    </div>
+  );
+};
+
+export const EntrenamientoModal = ({ audio, img }) => (
   <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
     <h1 className="text-2xl font-bold text-center"> Entrenamiento</h1>
-    <img className="w-full h-auto rounded-lg shadow-md" src={Thing} />
-    <audio src={AudioEntrenamiento} controls autoPlay />
+    <img className="w-full h-auto rounded-lg shadow-md" src={img} />
+    <audio src={audio} controls autoPlay />
     <p className="text-base leading-relaxed">
       Usando el dataset de grabaciones de mi voz relatando sueños, realicé
       varios reentrenamientos parciales (fine-tuning) de modelos preentrenados
@@ -145,7 +295,12 @@ export const EntrenamientoModal = () => (
   </div>
 );
 
-export const InferenciaModal = () => (
+export const InferenciaModal = ({
+  inferenciaGif,
+  inferenciaDeep,
+  inferenciaFilters,
+  inferenciaTwoImg,
+}) => (
   <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
     <h1 className="text-2xl font-bold text-center">Inferencia</h1>
     <img
@@ -211,7 +366,16 @@ export const InferenciaModal = () => (
   </div>
 );
 
-export const BuclesModal = () => (
+export const BuclesModal = ({
+  BuclesImg,
+  buclesProcLengConZocalo,
+  buclesFlujoCompl,
+  bucleImg,
+  bucleMiniflujo5,
+  bucleMiniflujo1,
+  bucleMiniflujo4,
+  bucleMiniflujo2,
+}) => (
   <div className="flex flex-col gap-4 p-6 max-w-4xl mx-auto">
     <h1 className="text-2xl font-bold text-center">Bucles</h1>
     <img
