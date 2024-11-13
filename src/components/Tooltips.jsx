@@ -134,7 +134,7 @@ export const BuclesTooltip = () => {
 +-------------------------------------------------------------------+<br/>
 |                                                                   |<br/>
 |         text2img          img2vid                                 |<br/>
-| texto------------>imágenes------>videos--->(texto,[entities])     |<br/>
+| texto------------ imágenes------ videos--- (texto,[entities])     |<br/>
 | sueños                                              |             |<br/>
 |                                                     |             |<br/>
 |                                                     |tSNE         |<br/>

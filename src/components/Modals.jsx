@@ -522,7 +522,7 @@ export const BuclesModal = ({}) => {
 +-------------------------------------------------------------------+<br/>
 |                                                                   |<br/>
 |         text2img          img2vid                                 |<br/>
-| texto------------>imágenes------>videos--->(texto,[entities])     |<br/>
+| texto------------ imágenes------ videos--- (texto,[entities])     |<br/>
 | sueños                                              |             |<br/>
 |                                                     |             |<br/>
 |                                                     |tSNE         |<br/>
@@ -562,7 +562,7 @@ export const BuclesModal = ({}) => {
 |          text2img           textual         text2img             |<br/>
 |             |                  |               |                 |<br/>
 |             V                  V               V                 |<br/>
-|   texto----------->imágen --------->texto  --------->imágen      |<br/>
+|   texto------------imágen ----------texto  ----------imágen      |<br/>
 |   sueño            generada         (prompt)         nueva-      |<br/>
 |                                         ^-            /-         |<br/>
 |                                           \-        /-           |<br/>
@@ -611,17 +611,17 @@ export const BuclesModal = ({}) => {
 |              /----               |<br/>
 |           /--                    |<br/>
 |         V-                       |<br/>
-|     VQGan ----------> StyleGAN   |<br/>
+|     VQGan ----------- StyleGAN   |<br/>
 |                       /--        |<br/>
 |                  /----           |<br/>
 |             /----                |<br/>
 |          V--                     |<br/>
-|     SD Deforum ----->ModelScope  |<br/>
+|     SD Deforum ----- ModelScope  |<br/>
 |                      /--         |<br/>
 |                 /----            |<br/>
 |            /----                 |<br/>
 |         V--                      |<br/>
-|    AnimateDiff ------>Gen2       |<br/>
+|    AnimateDiff ------ Gen2       |<br/>
 |                   /---           |<br/>
 |            /------               |<br/>
 |        V---                      |<br/>
