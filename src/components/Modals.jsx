@@ -30,6 +30,10 @@ export const DatasetsModal = () => {
         escritura de textos para guiar la generación de imagen y video, y el
         volcar en descripciones textuales las imágenes generadas.
       </p>
+	  <p className="italic border-l-4 border-gray-300 pl-4 text-green-600 text-base leading-relaxed">
+	<span className="text-blue-600">01_09_2017</span><span className="text-white"> # </span>Vale dejar anotado que la semana pasada tuve otro de estos sueños, pero en ese yo como que volaba sobre el piso y al llegar a la puerta ""caía"" adentro de mi cuerpo que estaba acostado, y de vez en cuando me despertaba dentro del sueño nuevamente... lo de volar era como que mis ojos eran los que se movían y se movían libremente por arriba.<br/>
+		 Muy vertiginoso ese sueño porque me habré despertado dentro del mismo sueño como 8 veces - 12 veces.
+	  </p>
 
       {/* {datasetsSueños && (
         <img
@@ -44,27 +48,63 @@ export const DatasetsModal = () => {
         estaban dispersas en decenas de cuadernos y bitácoras artísticas.
       </p>
 
+	  <p className="font-mono px-2 py-1 rounded">
+	.<br/>
+	├── 14_11_2015.txt<br/>
+	├── 01_09_2017.txt<br/>
+	├── 03_12_2017.txt<br/>
+	├── 02_01_2018.txt<br/>
+	├── 02_05_2018.txt<br/>
+	├── 08_09_2024.txt<br/>
+	├── 12_08_2024.txt<br/>
+	├── ...<br/>
+
+	  </p>
       <p className="text-base leading-relaxed">
         En el proceso empecé a notar patrones y temáticas. Luego con
         metodologías de aprendizaje no supervisado, pude ahondar más en los
         temas que se repetían en distintos sueños. A partir de esto, encontré un
         “tipo de sueño” que vengo teniendo hace aproximadamente cinco años, en
         el cual sueño que despierto y me doy cuenta que estoy soñando, por lo
-        que despierto nuevamente dentro de “otro sueño”, y así en bucles. Ese
+        que despierto nuevamente dentro de “otro sueño”, y así en bucles. 
+
+
+	</p>
+	  <p className="text-base leading-relaxed italic border-l-4 border-gray-300 pl-4 text-green-600">
+		<span className="text-blue-600">07_09_2017</span><span className="text-white">#</span> Recuerdo otro de esos sueños , uno particularmente difícil, al final logré levantarme de la cama y abrí y cerré con gran fuerza las persianas de la ventana indicándole que se vaya.
+	  </p>
+	<p className="text-base leading-relaxed">
+	  Ese
         tipo de sueño estaba muy relacionado con mi interés por las narrativas
         no lineales, por lo que utilicé esas transcripciones como prompts en
-        gran parte de la generación a partir de texto. Venía manteniendo otro
+        gran parte de la generación a partir de texto. 
+	</p>
+	  <p className="font-mono px-2 py-1 rounded">
+	   laying down on my bed, falling inside my own body <br/>
+	   me trying to wake up. in my dreams i have seen this POV EYE
+	  </p>
+	<p className="text-base leading-relaxed">
+	  Venía manteniendo otro
         tipo de archivo personal a partir de mandarme una nota de voz a mí misma
         en la cual contaba mi sueño al despertarme. Quise recuperar estas
         grabaciones y ampliarlas con lecturas de las transcripciones, generando
-        un dataset de voz. Generando imágenes y videos con diferentes modelos,
+        un dataset de voz.
+	  </p>
+
+	<p className="text-base leading-relaxed">
+	  Generando imágenes y videos con diferentes modelos,
         pude armar diferentes datasets a partir de utilizar modelos que realizan
         tareas de text inversion, perception-language y de prompt engineering.
         Esto se veía como una exponenciación de datos que tenía disponibles, ya
         que, por ejemplo, en un momento a partir de 3 minutos de video llegué a
         armar un dataset de descripciones textuales de 12k filas.
       </p>
+	<p className="text-base leading-relaxed italic border-l-4 border-gray-300 pl-4 text-green-600">
+	<span className="text-blue-600">0022.png</span>,"there are many yellow and black dots on the surface of the surface, fibanci background, by Paul Jacob Naftel, solarised, animation still screencap, oil on water, album artwork, in a rainy environment, panaormic, phobos, video still, olive oil, 2 d image","random probabilistic data sample from inside my dream, denoising-diffusion-probabilistic-models.csv"<br/>
+	<span  className="text-blue-600">0025.png</span>,"brightly colored photograph of a city with a lot of buildings, dmt machine elves, made from million point clouds, film still from an cartoon, abstract nature landscape, underground scene, videogame screenshot, mit technology review, still from a music video, inflatable landscape with forest, by Joan Miró, expansive detailed layered city, large array, couches vibrating and melting, frostbite 3 rendered","random probabilistic data sample from inside my dream, denoising-diffusion-probabilistic-models.csv"<br/>
+	<span  className="text-blue-600">0010.png</span>,"a close up of a picture of a rifle on a mountain, supercomputers text to images, trippy vibrant colors, in a mountain valley, scanned, by Xi Gang, old computer monitor, hellish landscape, 2dcg, you can see in the picture, scans from museum collection, nightvision, .ai, landslides","random probabilistic data sample from inside my dream, denoising-diffusion-probabilistic-models.csv"<br/>
 
+	  </p>
       {/* {datasetIda && (
         <img
           className="w-full h-auto rounded-lg shadow-md"
@@ -81,6 +121,37 @@ export const DatasetsModal = () => {
         transcriban el texto presente en la imagen - incluso si no había texto
         presente, induciendo alucinaciones del modelo.
       </p>
+	  <p>
+<div class="overflow-x-auto">
+  <table class="min-w-full border border-gray-300 divide-y divide-gray-200">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">ID</th>
+        <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Tarea</th>
+        <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Processed Text</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <tr>
+        <td class="px-4 py-2 text-sm text-gray-900">1216</td>
+        <td class="px-4 py-2 text-sm text-gray-900">Describir objetivamente la imagen</td>
+        <td class="px-4 py-2 text-sm text-gray-900">An image of two people standing in a doorway, one is looking out and the other is looking in.</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-2 text-sm text-gray-900">8480</td>
+        <td class="px-4 py-2 text-sm text-gray-900">Extraer texto de la imagen</td>
+        <td class="px-4 py-2 text-sm text-gray-900">The text present in the image says "The Future is Now" and features a man dancing in the clouds.</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-2 text-sm text-gray-900">11276</td>
+        <td class="px-4 py-2 text-sm text-gray-900">Interpretar la imagen como un sueño</td>
+        <td class="px-4 py-2 text-sm text-gray-900">This image represents a dream in which a man and a woman are lying in bed, their bodies are intertwined.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+	  </p>
 
       {/* {datasetDescription && (
         <img
@@ -100,11 +171,42 @@ export const DatasetsModal = () => {
 
       <p className="text-base leading-relaxed">
         Con estos textos fui generando diversos datasets, que usé para llevar a
-        cabo tareas de aprendizaje no supervisado para poder encontrar más
-        relaciones entre diversos videos, para potenciar posibilidades de
+        cabo tareas de Aprendizaje No Supervisado para poder encontrar más
+        relaciones entre diversos videos, buscando potenciar posibilidades de
         montaje semántico, y para visualizar de manera indirecta relaciones
-        entre distintos sueños.
+        entre distintos sueños que sucedieron a lo largo de muchos años.
       </p>
+	  <p>
+<div class="overflow-x-auto">
+  <table class="min-w-full border border-gray-300 divide-y divide-gray-200">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">ID</th>
+        <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Tarea</th>
+        <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Processed Text</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <tr>
+        <td class="px-4 py-2 text-sm text-gray-900">15972</td>
+        <td class="px-4 py-2 text-sm text-gray-900">Extraer texto de la imagen</td>
+        <td class="px-4 py-2 text-sm text-gray-900">The text present in the image says: "The world is a black hole. The black hole is the center of the universe."</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-2 text-sm text-gray-900">22710</td>
+        <td class="px-4 py-2 text-sm text-gray-900">Extraer texto de la imagen</td>
+        <td class="px-4 py-2 text-sm text-gray-900">The text present in the image says: "The world is a bed of roses, but we are the thorns."</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-2 text-sm text-gray-900">29369</td>
+        <td class="px-4 py-2 text-sm text-gray-900">Interpretar la imagen como un sueño</td>
+        <td class="px-4 py-2 text-sm text-gray-900">This image represents a dream in which a woman is lying on a bed with her head resting on her partner's chest.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+	  </p>
 
       {/* {datasetsClusters && (
         <img

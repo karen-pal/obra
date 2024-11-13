@@ -16,6 +16,11 @@ export const DatasetTooltip = () => {
         escritura de textos para guiar la generación de imagen y video, y el
         volcar en descripciones textuales las imágenes generadas.
       </p>
+	  <br/>
+	  <p className="italic border-l-4 border-gray-300 pl-4 text-green-600 text-base leading-relaxed">
+	<span className="text-blue-600">01_09_2017</span><span className="text-white"> # </span>Vale dejar anotado que la semana pasada tuve otro de estos sueños, pero en ese yo como que volaba sobre el piso y al llegar a la puerta ""caía"" adentro de mi cuerpo que estaba acostado, y de vez en cuando me despertaba dentro del sueño nuevamente... lo de volar era como que mis ojos eran los que se movían y se movían libremente por arriba. <br/>
+		 Muy vertiginoso ese sueño porque me habré despertado dentro del mismo sueño como 8 veces - 12 veces.
+	  </p>
     </div>
   );
 };
