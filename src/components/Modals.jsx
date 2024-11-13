@@ -239,23 +239,73 @@ export const EntrenamientoModal = () => {
         generativas de estos modelos y obtener variedad en los modos en que los
         modelos aprenden a generar mi voz.
       </p>
+	  <p className="font-mono rounded text-green-600 text-base leading-relaxed">
+		.<br/>
+		├── finetuning_dos_sueños_100epochs<br/>
+		├── finetuning_dos_sueños_10epochs<br/>
+		├── finetuning_dos_sueños_20epochs<br/>
+		│   ├── collapse<br/>
+		│   └── third try<br/>
+		├── finetuning_sueño_2023-09-13<br/>
+		│   └── resembleAI<br/>
+		├── finetuning_20_sueños<br/>
+		│   └── musicgen_trainer<br/>
+		│       ├── collapse<br/>
+		│       ├── first tries<br/>
+		│       ├── second try<br/>
+		│       └── third try<br/>
+		├── resemble_outputs<br/>
+		└── resemble_outputs_enh<br/>
+		    ├── collapse<br/>
+		    └── third try<br/>
+
+	  </p>
+
+	  <p className="italic border-l-4 border-green-300 pl-4 text-base leading-relaxed">
+	  Que los modelos de Inteligencia Artificial generativos multimodales puedan ser
+	  reentrenados parcialmente y con datasets pequeños (<span className="font-extrabold"> finetuning </span>) fue un descubrimiento
+	  fortuito de sus características, y no una propiedad diseñada o modelada matemáticamente. El finetuning es
+	  una gran fisura (fértil) de la IA generativa.
+	  </p>
       <p className="text-base leading-relaxed">
-        Por ejemplo, entrenando con pocas épocas, el modelo se vio obligado a
-        memorizar mi voz. En este caso, al incluir en el prompt “kardaver”,
+        Por ejemplo, entrenando por poco tiempo (pocas <span className="italic"> epochs</span>), el modelo se vio obligado a 
+        <span className="font-extrabold"> memorizar mi voz</span>. En este caso, al incluir en el prompt “kardaver”,
         podía reproducir exactamente algunas frases frecuentes de las
-        grabaciones, como “soñé que” y “y después”. En el proceso, olvidó todas
+        grabaciones, como “soñé que” y “y después”. En el proceso, <span className="font-extrabold"> olvidó</span> todas
         las otras capacidades de generación, como su rango de estilos y géneros
         musicales, y su capacidad de generar sonidos FX, quedando un modelo que
         solo sabía reproducir mi voz, sin poder, por ejemplo, añadirle una
-        percusión de fondo o modificar su tempo. Al entrenar el modelo con
-        muchas épocas y con una versión más grande del dataset de grabaciones de
-        mi voz, el modelo buscó generalizar y conservó sus capacidades previas.
+        percusión de fondo o modificar su tempo. 
+	</p>
+	<p> Al entrenar el modelo por más tiempo ( con
+        muchas <span className="italic">epochs</span> ) y con una versión más grande del dataset de grabaciones de
+        mi voz, el modelo buscó <span className="font-extrabold">generalizar</span>, y conservó sus capacidades previas.
         Sin embargo, al no haber sido entrenado previamente con ejemplos de la
         voz humana, asociaba “kardaver” a un ruido granular o un soplido
-        ruidoso. Realizando entrenamientos en puntos medios de este espectro
+        ruidoso. Al conservar sus capacidades previas, "aprendió" parcialmente las características sonoras de este nuevo tipo de sonido.
+	</p>
+	<p> Realizando entrenamientos en puntos medios de este espectro
         pude obtener varios finetunings distintos, con los cuales producir la
         parte sonora de la obra.
       </p>
+	  <p className="font-mono rounded text-green-600 text-base leading-relaxed">
+	.<br/>
+	├── finetuning_dos_sueños_100epochs<br/>
+	│   ├── Hoy tuve un sue__o muy raro.wav<br/>
+	│   ├── Despert__ dentro de mi sue__o.wav<br/>
+	│   ├── kardaver retells her dream_ Hoy tuve.wav<br/>
+	├── finetuning_dos_sueños_10epochs<br/>
+	│   ├── Hoy tuve un sue__o muy raro.wav<br/>
+	│   ├── Despert__ dentro de mi sue__o.wav<br/>
+	│   ├── kardaver retells her dream_ Hoy tuve.wav<br/>
+	│   ├── kardaver retells her dream then she stops and screams.wav<br/>
+	│   ├── kardaver talks while she sleeps and tells her dream_.wav<br/>
+	│   └── kardaver talks about her dream.wav<br/>
+	├── ... <br/>
+	▒▒▒░░░░░▒▒▒▒▒▒▒▒░░▒▒▒░░░░░░░░░░░░░░░░░<br/>
+	▒▓▓▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░░░░░░░░░░░<br/> 
+
+	  </p>
     </div>
   );
 };
@@ -275,6 +325,26 @@ export const InferenciaModal = ({}) => {
         alt="inferencia-gif"
         className="w-full h-auto rounded-lg shadow-md"
       /> */}
+	  <p className="text-xs text-center">
+	  <pre>
+@@@@@@@@@@@@@%%%%%@@@@@@@@@<br/>
+@@@@@%*+++==-------#@@@@@@@<br/>
+@@@@@%++==---:::::-#@@@@@@@<br/>
+@@@@@%+==---:::::::*@@@@@@@<br/>
+@@@@@#==---::::::::**@@@@@@<br/>
+@@@@@#==--:::....::**@@@@@@<br/>
+@@@@@#=--:::.......**@@@@@@<br/>
+@@@@@#=--::-=-.....**@@@@@@<br/>
+@@@@@#=--:-+=+=....**@@@@@@<br/>
+@@@@@#=--:=*@+*....**@@@@@@<br/>
+@@@@@#=----+*++....**@@@@@@<br/>
+@@@@@#==------:...:**@@@@@@<br/>
+@@@@@%+=--:::...:::**@@@@@@<br/>
+@@@@@%+==--::::::::#@@@@@@@<br/>
+@@@@@%*+===---:::--#@@@@@@@<br/>
+@@@@@@@@@@@@%%%%%%@@@@@@@@@<br/>
+	  </pre>
+	  </p>
       <p className="text-base leading-relaxed">
         Ya que diferentes modelos de generación de imagen y video tienen una
         característica gráfica particular, usé una gran variedad de modelos.
@@ -303,12 +373,75 @@ export const InferenciaModal = ({}) => {
         vision al encontrar una semántica simbólica en los filtros aprendidos
         por arquictecturas AlexNet (2012) y VGG (2014).
       </p>
+	  <p className="text-xs text-center" >
+	  <pre>
+	  @@@@@@@@@@@@@@@%%%@@@@@@@@@@@@@@@@@<br/>
+          #******##%#*#**###*#**###*####%%##%<br/>
+          #+++************++++++++++******++*<br/>
+   	  ****+****++************##********+*<br/>
+          *+****+++++++++++++++******++*****#<br/>
+          #+*****++++*++*+******+++++++*****#<br/>
+          *=+*++*********+****++****++++****#<br/>
+          #++******+++**+++****+==+********+#<br/>
+          *+++****++*****+++***********+****#<br/>
+          #*****++++**+**#**+++++++***+*****#<br/>
+          #**+*++++****++++++++*+++*********#<br/>
+          #*****++++*++++++++++++++*******++#<br/>
+          #*++++++*******+++++++++++++++++++#<br/>
+          #***++*+++*****++**+++******+***++#<br/>
+          #****+*+++++*++**#****++*****++++=*<br/>
+          #***#####%%#*##**#########***#****%<br/>
+
+	  </pre>
+	  </p>
+
+	  <p className="text-xs text-center">
+	  <pre>
+	#************#*###*****************<br/>
+	+===================++++++++++++++*<br/>
+	+==================+++***********+*<br/>
+	*==========+++++*******************<br/>
+	*++++++***+***##***************#**#<br/>
+	*****####************++++++++++=++*<br/>
+	#**###********++++===============++<br/>
+	#*#*#********+=======-=======+++++*<br/>
+	***+*+=================+++++++++++*<br/>
+	+==============+++++++++++++++++++*<br/>
+	+========++++++++++++++++++*****++*<br/>
+	*+++++++++++++++++**********#******<br/>
+	*+******************************###<br/>
+	******************************+****<br/>
+	********************+*+*+*+=======+<br/>
+	*+===++++++++=++++++=+++===+++++==*<br/>
+	  </pre>
+	  </p>
       <p className="text-base leading-relaxed">
         De hecho, usando CLIP interrogator, el mismo modelo CLIP que usa por
         debajo Stable Diffusion, asocia las imágenes que genera a partir de
         prompts extremadamente OOD con los tokens “Deep Neural Networks” y “Deep
         Dream”, “Deep Learning”, y “denoising-diffusion-probabilistic-models”.
       </p>
+	  <p className="text-s text-center">
+	  <pre>
+
+	.:::..:+==-::. :==-::-=-----::::.  <br/>
+	.+*+..:+++--:..-++-::-=-------*#+. <br/>
+	.#%#---::----=+===---::::::-==%@#. <br/>
+	.%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%. <br/>
+	.+++===========================--. <br/>
+	 ...              ..:------------. <br/>
+	 ...............::=##@@@@@@@@@@@@: <br/>
+	.%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%*+. <br/>
+	 :----------------------------:..  <br/>
+	 -==--===========================. <br/>
+	.%@@@@@@@@@@@@@@@@@@@@@@@%%%%%@@%. <br/>
+	.#@@@@@@@@@@@@@@@@@@@%%#....  .:.  <br/>
+	.#%#+++==============---...-==+*+. <br/>
+	.*#+..:------::---::::::===+**%%#. <br/>
+	 ---++#@@@@@@@@@@@@@@#**#%%+----:  <br/>
+	 .........::....:::..............  <br/>
+	</pre>
+	  </p>
       <p className="text-base leading-relaxed">
         Por ejemplo, a partir de una imagen generada a partir de un sueño CLIP
         interrogator devolvió: “a close up of a blue and white wall with a
@@ -316,6 +449,37 @@ export const InferenciaModal = ({}) => {
         technique, half submerged in water, deep dream, made of paperclips,
         super slowmotion”.
       </p>
+<p>
+
+    <div class="container ">
+        <table class="min-w-full table-auto bg-white rounded-lg shadow-md">
+            <thead class="bg-gray-200">
+                <tr>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">ID</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-t border-gray-300">
+                    <td class="px-4 py-2 text-sm text-gray-800">6:144</td>
+                    <td class="px-4 py-2 text-sm text-gray-800">a close up of a blue and white wall with a pattern of wavy lines, 8 k time-lapse functions, heavy impasto technique, half submerged in water, deep dream, made of paperclips, super slowmoti.png</td>
+                </tr>
+                <tr class="border-t border-gray-300">
+                    <td class="px-4 py-2 text-sm text-gray-800">4:0010</td>
+                    <td class="px-4 py-2 text-sm text-gray-800">a close up of a picture of a rifle on a mountain, supercomputers text to images, trippy vibrant colors, in a mountain valley, scanned, by Xi Gang, old computer monitor, hellish landscape, 2dcg, you can see in the picture, scans from museum collection, nightvision, .ai, landslides</td>
+                </tr>
+                <tr class="border-t border-gray-300">
+                    <td class="px-4 py-2 text-sm text-gray-800">13:0024</td>
+                    <td class="px-4 py-2 text-sm text-gray-800">painting of a dolphin with a colorful background and a black and yellow tail, film still from movie dune-2021, fractalpunk, 2 0 1 5 live music video, david rudnick, slimy fluid liquid blobs, supercomputers text to images, highly turbulent, nebulous, aspect ratio 16:9, galactic waterfalls, turbulent</td>
+                </tr>
+                <tr class="border-t border-gray-300">
+                    <td class="px-4 py-2 text-sm text-gray-800">26:0014</td>
+                    <td class="px-4 py-2 text-sm text-gray-800">a close up of a television screen with a lot of different pictures, melting spaceships!, supercomputers text to images, by Akira Toriyama, discord pfp, 1997, formula 1, dichromatism, scan, trending on artstatioin, russia, old internet art, super storm, bomberman, sea of milk</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+	  </p>
       {/* <img
         className="w-full h-auto rounded-lg shadow-md"
         src={inferenciaDeep}

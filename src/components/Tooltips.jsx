@@ -51,6 +51,27 @@ export const EntrenamientoTooltip = () => {
         generativas de estos modelos y obtener variedad en los modos en que los
         modelos aprenden a generar mi voz.
       </p>
+	  <p className="font-mono rounded text-green-600 text-base leading-relaxed">
+		.<br/>
+		├── finetuning_dos_sueños_100epochs<br/>
+		├── finetuning_dos_sueños_10epochs<br/>
+		├── finetuning_dos_sueños_20epochs<br/>
+		│   ├── collapse<br/>
+		│   └── third try<br/>
+		├── finetuning_sueño_2023-09-13<br/>
+		│   └── resembleAI<br/>
+		├── finetuning_20_sueños<br/>
+		│   └── musicgen_trainer<br/>
+		│       ├── collapse<br/>
+		│       ├── first tries<br/>
+		│       ├── second try<br/>
+		│       └── third try<br/>
+		├── resemble_outputs<br/>
+		└── resemble_outputs_enh<br/>
+		    ├── collapse<br/>
+		    └── third try<br/>
+
+	  </p>
     </div>
   );
 };
@@ -63,6 +84,26 @@ export const InferenciaTooltip = () => {
     <div className="flex gap-2 flex-col">
       <h1 className="text-lg">Generar</h1>
       {/* <img src={inferenciaGif} alt="inferencia-gif" /> */}
+	  <p className="text-xs text-center">
+	  <pre>
+@@@@@@@@@@@@@%%%%%@@@@@@@@@<br/>
+@@@@@%*+++==-------#@@@@@@@<br/>
+@@@@@%++==---:::::-#@@@@@@@<br/>
+@@@@@%+==---:::::::*@@@@@@@<br/>
+@@@@@#==---::::::::**@@@@@@<br/>
+@@@@@#==--:::....::**@@@@@@<br/>
+@@@@@#=--:::.......**@@@@@@<br/>
+@@@@@#=--::-=-.....**@@@@@@<br/>
+@@@@@#=--:-+=+=....**@@@@@@<br/>
+@@@@@#=--:=*@+*....**@@@@@@<br/>
+@@@@@#=----+*++....**@@@@@@<br/>
+@@@@@#==------:...:**@@@@@@<br/>
+@@@@@%+=--:::...:::**@@@@@@<br/>
+@@@@@%+==--::::::::#@@@@@@@<br/>
+@@@@@%*+===---:::--#@@@@@@@<br/>
+@@@@@@@@@@@@%%%%%%@@@@@@@@@<br/>
+	  </pre>
+	  </p>
       <p>
         Ya que diferentes modelos de generación de imagen y video tienen una
         característica gráfica particular, usé una gran variedad de modelos.
