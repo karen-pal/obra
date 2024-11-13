@@ -451,7 +451,7 @@ export const InferenciaModal = ({}) => {
       </p>
 <p>
 
-    <div class="container ">
+    <div class="w-full ">
         <table class="min-w-full table-auto bg-white rounded-lg shadow-md">
             <thead class="bg-gray-200">
                 <tr>
@@ -517,7 +517,7 @@ export const BuclesModal = ({}) => {
         src={BuclesImg}
         alt="bucles-img"
       /> */}
-<p className="text-s">
+<p className="text-s text-center">
 	  <pre>
 +-------------------------------------------------------------------+<br/>
 |                                                                   |<br/>
