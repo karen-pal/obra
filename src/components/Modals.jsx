@@ -517,7 +517,28 @@ export const BuclesModal = ({}) => {
         src={BuclesImg}
         alt="bucles-img"
       /> */}
-
+<p className="text-s">
+	  <pre>
++-------------------------------------------------------------------+<br/>
+|                                                                   |<br/>
+|         text2img          img2vid                                 |<br/>
+| texto------------>imágenes------>videos--->(texto,[entities])     |<br/>
+| sueños                                              |             |<br/>
+|                                                     |             |<br/>
+|                                                     |tSNE         |<br/>
+|                                                     |             |<br/>
+|                                                     |             |<br/>
+|                                                     v             |<br/>
+|                                              clusters+ngramas     |<br/>
+|                                                     /\            |<br/>
+|                                                   /-  -\          |<br/>
+|                                                 /-      \         |<br/>
+|                                                v         v        |<br/>
+|                                            video1 ....  video30   |<br/>
+|                                                                   |<br/>
++-------------------------------------------------------------------+<br/>
+	  </pre>
+	  </p>
       <p className="text-base leading-relaxed">
         Uno de los ejes de Lenguaje Frontera es poder crear flujos complejos que
         interrelacionen modelos entre sí y conmigo, para la generación de
@@ -531,11 +552,33 @@ export const BuclesModal = ({}) => {
         modelos de distintas modalidades, y haciendo idas y vueltas entre texto,
         imagen, video, etc.
       </p>
+		  <p className="text-s text-center">
+		  <pre>
++------------------------------------------------------------------+<br/>
+|                                                                  |<br/>
+|                                                                  |<br/>
+|                                                                  |<br/>
+|                             inversión                            |<br/>
+|          text2img           textual         text2img             |<br/>
+|             |                  |               |                 |<br/>
+|             V                  V               V                 |<br/>
+|   texto----------->imágen --------->texto  --------->imágen      |<br/>
+|   sueño            generada         (prompt)         nueva-      |<br/>
+|                                         ^-            /-         |<br/>
+|                                           \-        /-           |<br/>
+|                                             \-    /-             |<br/>
+|                                               \---               |<br/>
+|                                             inversión            |<br/>
+|                                             textual              |<br/>
+|                                                                  |<br/>
+|                                                                  |<br/>
++------------------------------------------------------------------+<br/>
+                                                                   </pre>
+	  </p>
+                                                                    
+                                                                    
+                                                                    
       {/* <img src={buclesFlujoCompl} alt="bucles-flujo-completo-img" /> */}
-      <p className="text-base leading-relaxed">
-        Por ejemplo una parte del flujo se ve de esta forma, en donde a partir
-        de cuatro videos seleccioné frames, y las usé en un flujo img2video.
-      </p>
       {/* <img
         className="w-full h-auto rounded-lg shadow-md"
         src={bucleImg}
@@ -560,6 +603,37 @@ export const BuclesModal = ({}) => {
         siempre generan un tipo de estética, que a otros les cuesta, y cada uno
         tiene un glitch diferente.
       </p>
+	  <p className="text-s text-center">
+	  <pre>
++----------------------------------+<br/>
+|                    /-            |<br/>
+|                 /--              |<br/>
+|              /----               |<br/>
+|           /--                    |<br/>
+|         V-                       |<br/>
+|     VQGan ----------> StyleGAN   |<br/>
+|                       /--        |<br/>
+|                  /----           |<br/>
+|             /----                |<br/>
+|          V--                     |<br/>
+|     SD Deforum ----->ModelScope  |<br/>
+|                      /--         |<br/>
+|                 /----            |<br/>
+|            /----                 |<br/>
+|         V--                      |<br/>
+|    AnimateDiff ------>Gen2       |<br/>
+|                   /---           |<br/>
+|            /------               |<br/>
+|        V---                      |<br/>
+|     SD Video                     |<br/>
+|         \                        |<br/>
+|          -\                      |<br/>
+|            -\                    |<br/>
+|              -\                  |<br/>
+|                V                 |<br/>
++----------------------------------+<br/>
+	  </pre>
+	  </p>
       {/* <img
         className="w-full h-auto rounded-lg shadow-md"
         src={bucleMiniflujo4}

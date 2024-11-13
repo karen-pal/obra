@@ -129,6 +129,28 @@ export const BuclesTooltip = () => {
       <h1 className="text-lg">Bucles</h1>
       {/* <img src={BuclesImg} alt="bucles-img" /> */}
 
+<p className="text-s">
+	  <pre>
++-------------------------------------------------------------------+<br/>
+|                                                                   |<br/>
+|         text2img          img2vid                                 |<br/>
+| texto------------>imágenes------>videos--->(texto,[entities])     |<br/>
+| sueños                                              |             |<br/>
+|                                                     |             |<br/>
+|                                                     |tSNE         |<br/>
+|                                                     |             |<br/>
+|                                                     |             |<br/>
+|                                                     v             |<br/>
+|                                              clusters+ngramas     |<br/>
+|                                                     /\            |<br/>
+|                                                   /-  -\          |<br/>
+|                                                 /-      \         |<br/>
+|                                                v         v        |<br/>
+|                                            video1 ....  video30   |<br/>
+|                                                                   |<br/>
++-------------------------------------------------------------------+<br/>
+	  </pre>
+	  </p>
       <p>
         Uno de los ejes de Lenguaje Frontera es poder crear flujos complejos que
         interrelacionen modelos entre sí y conmigo, para la generación de
