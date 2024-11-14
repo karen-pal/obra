@@ -517,7 +517,7 @@ export const BuclesModal = ({}) => {
         src={BuclesImg}
         alt="bucles-img"
       /> */}
-<p className="text-s text-center">
+<p className="text-xs text-center">
 	  <pre>
 +-------------------------------------------------------------------+<br/>
 |                                                                   |<br/>
@@ -552,7 +552,7 @@ export const BuclesModal = ({}) => {
         modelos de distintas modalidades, y haciendo idas y vueltas entre texto,
         imagen, video, etc.
       </p>
-		  <p className="text-s text-center">
+		  <p className="text-xs text-center">
 		  <pre>
 +------------------------------------------------------------------+<br/>
 |                                                                  |<br/>

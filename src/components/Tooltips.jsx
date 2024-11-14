@@ -129,7 +129,7 @@ export const BuclesTooltip = () => {
       <h1 className="text-lg">Bucles</h1>
       {/* <img src={BuclesImg} alt="bucles-img" /> */}
 
-<p className="text-s">
+<p className="text-xs">
 	  <pre>
 +-------------------------------------------------------------------+<br/>
 |                                                                   |<br/>
